@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Inspect a built Manifest V3 directory. Heuristics do not certify Store compliance."""
+"""Inspect only a selected MV3 build locally; never send its contents anywhere.
+
+Sensitive paths are rejected before reading. Credential-related names below are
+deny rules, not credential inputs. Heuristics do not certify Store compliance.
+"""
 from __future__ import annotations
 import argparse
 import json
@@ -14,7 +18,9 @@ from tool_paths import safe_path, relative_file
 BROAD = {'<all_urls>', '*://*/*', 'http://*/*', 'https://*/*', 'file:///*'}
 SKIP_PARTS = {'.git', 'node_modules', '__pycache__', '.DS_Store', '.extension-builder'}
 SENSITIVE_SUFFIXES = {'.pem', '.key', '.p12', '.pfx', '.crt', '.cer', '.sqlite', '.db'}
-SENSITIVE_NAMES = {'.npmrc', '.netrc', '.git-credentials', '.pypirc', 'id_rsa', 'id_ed25519', 'id_ecdsa', 'id_dsa', 'credentials.json', 'service-account.json', 'server.py', 'server.js', 'server.ts', 'backend.py', 'backend.js', 'backend.ts'}
+SENSITIVE_NAMES = {'.npmrc', '.netrc', '.git-credentials', '.pypirc', 'id_rsa', 'id_ed25519', 'id_ecdsa', 'id_dsa', 'credentials.json', 'service-account.json', 'application_default_credentials.json', 'client_secret.json', 'client-secrets.json', 'oauth_tokens.json', 'secrets.json', 'server.py', 'server.js', 'server.ts', 'backend.py', 'backend.js', 'backend.ts'}
+CREDENTIAL_PARTS = {'.ssh', '.aws', '.azure', '.docker', '.kube', '.gnupg', 'gcloud'}
+SENSITIVE_PARTS = {'server', 'backend', 'secrets'} | CREDENTIAL_PARTS
 REMOTE_PATTERNS = [
     re.compile(r'\b(?:import|importScripts)\s*\(\s*[\"\x27`](?:https?:)?//', re.I),
     re.compile(r'\b(?:import|export)\s+(?:[^;]*?\bfrom\s*)?[\"\x27](?:https?:)?//', re.I),
@@ -37,7 +43,8 @@ def valid_match(value: str) -> bool:
 
 def sensitive_file(path: Path) -> bool:
     name = path.name.lower()
-    return name == '.env' or name.startswith('.env.') or name in SENSITIVE_NAMES or path.suffix.lower() in SENSITIVE_SUFFIXES or any(p.lower() in {'server', 'backend', 'secrets', '.ssh'} for p in path.parts)
+    protected_part = any(part.lower() in SENSITIVE_PARTS or part.lower() in {'.env', '.dev.vars'} or part.lower().startswith(('.env.', '.dev.vars.')) for part in path.parts)
+    return protected_part or name in SENSITIVE_NAMES or path.suffix.lower() in SENSITIVE_SUFFIXES
 
 
 def referenced_files(manifest: dict[str, Any]) -> list[str]:
@@ -98,6 +105,8 @@ def validate_extension(root: Path) -> dict[str, Any]:
         error(str(exc)); return result
     if not root.is_dir():
         error(f'extension directory does not exist: {root}'); return result
+    if sensitive_file(root):
+        error('extension root cannot be inside a sensitive or backend directory'); return result
     try:
         manifest_path = relative_file(root, 'manifest.json')
         if not manifest_path.is_file(): raise ValueError('manifest.json must be a regular file')
@@ -178,6 +187,8 @@ def validate_extension(root: Path) -> dict[str, Any]:
                 if 'use_dynamic_url' in entry and type(entry['use_dynamic_url']) is not bool: error('web_accessible_resources.use_dynamic_url must be boolean')
     for ref in referenced_files(manifest):
         try:
+            if sensitive_file(Path(ref)):
+                error(f'sensitive referenced resource cannot ship in extension: {ref}'); continue
             if '*' in ref:
                 if '..' in Path(ref).parts or Path(ref).is_absolute() or '\\' in ref:
                     error(f'unsafe resource path: {ref}')
@@ -190,6 +201,8 @@ def validate_extension(root: Path) -> dict[str, Any]:
         for name in list(dirnames):
             if (directory / name).is_symlink():
                 error(f'symlink is not allowed: {(directory / name).relative_to(root)}'); dirnames.remove(name)
+            elif sensitive_file((directory / name).relative_to(root)):
+                error(f'sensitive or backend directory cannot ship in extension: {(directory / name).relative_to(root)}'); dirnames.remove(name)
             elif name in SKIP_PARTS: dirnames.remove(name)
         for name in filenames:
             path = directory / name
