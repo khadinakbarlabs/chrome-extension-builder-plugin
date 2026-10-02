@@ -1,4 +1,7 @@
-/** Local planning model. Checklist completion is a declaration, never release proof. */
+/** Pure local planning transforms: no filesystem, environment or network access.
+ * Inputs are explicitly supplied plans. Security examples below describe rejected
+ * designs, not executable credential handling. Completion is never release proof.
+ */
 export const VERSION = 1;
 export const MAX_SESSION_BYTES = 64000;
 export const STEPS = [

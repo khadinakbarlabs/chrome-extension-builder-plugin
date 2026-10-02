@@ -1,6 +1,6 @@
 {
   "name": "chrome-extension-builder",
-  "version": "2.2.5",
+  "version": "2.2.6",
   "description": "Plan, research, design, build, test, and package Chrome Manifest V3 extensions with native specialist skills and an optional local Studio.",
   "author": {
     "name": "Khadin Akbar"
@@ -50,7 +50,7 @@
         "commerce_description": "No plugin purchases, subscription, checkout or upsell. Generated extension products are separate."
       },
       "publication": {
-        "release_notes": "Version 2.2.5 clarifies the Chrome Extension Builder listing with a factual task-based subtitle, description and starter prompts. All native editions retain the same 19 skills, shared policies, independent for Chrome logo and optional local helpers. No MCP or automatic startup was added."
+        "release_notes": "Version 2.2.6 hardens optional local checker and packager exclusions for credential-cache roots, directories and files before reading or packaging. Studio remains a pure planning model. All 19 skills, native editions and shared policies remain; no credential inputs, MCP or automatic startup were added."
       }
     }
   }
