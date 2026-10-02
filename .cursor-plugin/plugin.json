@@ -1,7 +1,7 @@
 {
   "name": "chrome-extension-builder",
   "displayName": "Chrome Extension Builder",
-  "version": "2.2.3",
+  "version": "2.2.4",
   "description": "Plan, research, design, build, test, and package Chrome Manifest V3 extensions with native specialist skills and an optional local Studio.",
   "author": {
     "name": "Khadin Akbar"

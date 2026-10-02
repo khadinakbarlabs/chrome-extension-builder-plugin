@@ -74,7 +74,7 @@ The tracker records evidence files/hashes, stage timestamps, and invalidation hi
 
 The stable package name is `chrome-extension-builder`. These editions use one shared repository, release version, skill names, policies, and support channel. Each branch has its host's native manifest and guide; foreign runtime metadata and source-only release tooling stay outside its installable package. The OpenAI directory upload has a single named plugin root; development ZIPs expose the native manifest at the root.
 
-This independent plugin is by Khadin Akbar, intended for adult developers. Browser compatibility does not imply Google, Anthropic, OpenAI, or Cursor endorsement. The package icon identifies this toolkit; public use of third-party brand artwork requires the necessary rights.
+This independent plugin is by Khadin Akbar, intended for adult developers. Google Chrome is a trademark of Google LLC. The public compatibility logo says “for Chrome”. Browser compatibility does not imply Google, Anthropic, OpenAI, or Cursor endorsement. The package icon identifies this toolkit; public use of third-party brand artwork requires the necessary rights.
 
 Optional local project files/storage retain only user-supplied information. Requested research can send scoped queries through the user's enabled host tools; their own retention and policies apply. No plugin-hosted service retains data. See [Privacy](PRIVACY.md), [Terms](TERMS.md), [Security](SECURITY.md), and [Support](SUPPORT.md).
 
