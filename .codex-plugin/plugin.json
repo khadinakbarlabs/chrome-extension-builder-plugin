@@ -1,0 +1,57 @@
+{
+  "name": "chrome-extension-builder",
+  "version": "2.2.3",
+  "description": "Plan, research, design, build, test, and package Chrome Manifest V3 extensions with native specialist skills and an optional local Studio.",
+  "author": {
+    "name": "Khadin Akbar"
+  },
+  "license": "MIT",
+  "keywords": [
+    "chrome-extension-builder",
+    "chrome",
+    "browser-extension",
+    "manifest-v3",
+    "developer-tools",
+    "privacy",
+    "chrome-web-store",
+    "skills-only"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Chrome Extension Builder",
+    "shortDescription": "Build polished Chrome tools",
+    "longDescription": "Build Manifest V3 Chrome extensions with 19 skills for research, architecture, UI/UX, frontend, backend, integrations, security, testing, performance, release preparation and maintenance. Designed for OpenAI plugin hosts with native skill metadata and 12 specialist role contracts. Guided chat workflows work without local tools; optional local Studio and scaffold/check/package helpers require supported host execution. Independent plugin by Khadin Akbar, intended for adult developers. No MCP, account service, purchases, credential intake or automatic startup. Generated products and store acceptance require separate verification.",
+    "developerName": "Khadin Akbar",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "composerIcon": "./assets/chrome-extension-builder-icon.png",
+    "logo": "./assets/chrome-extension-builder-icon.png",
+    "defaultPrompt": [
+      "Build a polished Chrome extension from my idea using the specialist team.",
+      "Open Extension Studio and help me choose an architecture and design.",
+      "Audit my extension and prepare a tested release package."
+    ],
+    "websiteURL": "https://github.com/khadinakbarlabs/chrome-extension-builder-plugin",
+    "supportURL": "https://github.com/khadinakbarlabs/chrome-extension-builder-plugin/issues",
+    "privacyPolicyURL": "https://github.com/khadinakbarlabs/chrome-extension-builder-plugin/blob/main/PRIVACY.md",
+    "termsOfServiceURL": "https://github.com/khadinakbarlabs/chrome-extension-builder-plugin/blob/main/TERMS.md"
+  },
+  "repository": "https://github.com/khadinakbarlabs/chrome-extension-builder-plugin",
+  "homepage": "https://github.com/khadinakbarlabs/chrome-extension-builder-plugin",
+  "extensions": {
+    "com.openai": {
+      "onboardingSkill": "./skills/chrome-extension-builder/SKILL.md",
+      "review": {
+        "commerce": false,
+        "commerce_description": "No plugin purchases, subscription, checkout or upsell. Generated extension products are separate."
+      },
+      "publication": {
+        "release_notes": "Version 2.2.3 aligns Claude, Codex/OpenAI and Cursor around one repository, shared documentation, policies and specialist contracts while preserving native metadata isolation and all 19 skills. Optional local Studio and helpers remain manually invoked."
+      }
+    }
+  }
+}

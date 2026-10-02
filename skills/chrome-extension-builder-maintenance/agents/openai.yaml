@@ -1,0 +1,7 @@
+interface:
+  display_name: "Chrome Extension Builder: Maintenance"
+  short_description: "Maintain compatibility, support, and updates"
+  default_prompt: "Use $chrome-extension-builder-maintenance to triage and maintain this extension with verified updates, migration, support, and rollout evidence."
+  icon_small: "../chrome-extension-builder/assets/icon.png"
+  icon_large: "../chrome-extension-builder/assets/icon.png"
+  brand_color: "#3559E9"

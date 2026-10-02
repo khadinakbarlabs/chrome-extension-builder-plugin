@@ -1,0 +1,7 @@
+interface:
+  display_name: "Chrome Extension Builder: Studio"
+  short_description: "Plan interactively in chat or local Studio"
+  default_prompt: "Use $chrome-extension-builder-studio to guide my extension brief and choices; start local Studio only if requested and supported."
+  icon_small: "../chrome-extension-builder/assets/icon.png"
+  icon_large: "../chrome-extension-builder/assets/icon.png"
+  brand_color: "#3559E9"

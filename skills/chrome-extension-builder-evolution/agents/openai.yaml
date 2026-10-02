@@ -1,0 +1,7 @@
+interface:
+  display_name: "Chrome Extension Builder: Evolution"
+  short_description: "Compare bounded design and architecture options"
+  default_prompt: "Use $chrome-extension-builder-evolution to compare up to three safe candidates using a finite evidence-based rubric and implement the winner."
+  icon_small: "../chrome-extension-builder/assets/icon.png"
+  icon_large: "../chrome-extension-builder/assets/icon.png"
+  brand_color: "#3559E9"

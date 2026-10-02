@@ -1,0 +1,7 @@
+interface:
+  display_name: "Chrome Extension Builder: Architecture"
+  short_description: "Design MV3 contexts and cloud boundaries"
+  default_prompt: "Use $chrome-extension-builder-architecture to design the extension contexts, stack, messages, storage, permissions, and backend boundaries."
+  icon_small: "../chrome-extension-builder/assets/icon.png"
+  icon_large: "../chrome-extension-builder/assets/icon.png"
+  brand_color: "#3559E9"
