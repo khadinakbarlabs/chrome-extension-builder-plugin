@@ -15,7 +15,7 @@ Capture purpose, trigger, browser contexts, exact data/hosts, permission rationa
 
 ## Select the team
 
-Read [team.json](references/team.json) and the selected `references/role-<id>.md` prompt. Its report paths and rubric govern assignments. Load only the relevant skills below. In a capable authorized host, delegate disjoint file ownership and explicit inputs/outputs; otherwise execute distinct sequential passes and disclose their independence limit. Use the native specialist agents when available; otherwise run the role contracts sequentially. Never invent agent runs.
+Read [team.json](references/team.json) and the selected `references/role-<id>.md` prompt. Its report paths and rubric govern assignments. Load only the relevant skills below. In a capable authorized host, delegate disjoint file ownership and explicit inputs/outputs; otherwise execute distinct sequential passes and disclose their independence limit. Cursor specialist role contracts remain in the skill references; use supported host delegation or distinct sequential passes. Never invent agent runs.
 
 | Work | Skill | Role |
 | --- | --- | --- |

@@ -1,21 +1,28 @@
 {
-  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "chrome-extension-builder",
+  "displayName": "Chrome Extension Builder",
   "version": "2.2.3",
   "description": "Plan, research, design, build, test, and package Chrome Manifest V3 extensions with native specialist skills and an optional local Studio.",
   "author": {
     "name": "Khadin Akbar"
   },
   "license": "MIT",
+  "logo": "./assets/chrome-extension-builder-icon.png",
   "keywords": [
     "chrome-extension-builder",
     "chrome",
     "browser-extension",
     "manifest-v3",
-    "agent-skills",
     "chrome-web-store",
     "skills-only"
   ],
+  "category": "developer-tools",
+  "tags": [
+    "chrome",
+    "manifest-v3",
+    "browser-extension"
+  ],
+  "skills": "./skills/",
   "repository": "https://github.com/khadinakbarlabs/chrome-extension-builder-plugin",
   "homepage": "https://github.com/khadinakbarlabs/chrome-extension-builder-plugin"
 }
