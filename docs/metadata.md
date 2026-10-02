@@ -1,6 +1,6 @@
 # Chrome Extension Builder metadata
 
-Release 2.2.2, updated 2026-10-02. Plugin identity stays `chrome-extension-builder`; all nineteen skill identifiers now share this native namespace. Earlier generic skill identifiers have been renamed: reload an updated package and use the current names below. Shared policy boundaries and workflow behavior are retained.
+Release 2.2.3, updated 2026-10-02. Plugin identity stays `chrome-extension-builder`; all nineteen skill identifiers now share this native namespace. Earlier generic skill identifiers have been renamed: reload an updated package and use the current names below. Shared policy boundaries and workflow behavior are retained.
 
 ## Skill catalog
 
@@ -26,8 +26,8 @@ Release 2.2.2, updated 2026-10-02. Plugin identity stays `chrome-extension-build
 | Chrome Extension Builder: Testing | [chrome-extension-builder-testing](../skills/chrome-extension-builder-testing/SKILL.md) |
 | Chrome Extension Builder: UX Design | [chrome-extension-builder-ux-design](../skills/chrome-extension-builder-ux-design/SKILL.md) |
 
-## Claude presentation
+## Shared presentation and native routing
 
-Release 2.2.2 uses the native host guide and README for this edition. Skill names remain in the `chrome-extension-builder` namespace. The public listing uses the original browser/extension icon supplied and approved by the publisher. Public archives exclude the privately selected Chrome-logo composite and unreferenced historical icons.
+All native editions use the same identity, release, README, policies, skill catalog and specialist role contracts. Their manifests point to the shared repository. The common icon is packaged in each edition; public brand artwork requires the necessary rights.
 
-Claude reads its native manifest and directory icon; 12 root text agents and five commands route to the skills. No OpenAI metadata is included.
+Claude retains native text agents and commands. Codex/OpenAI uses its native manifest and skill presentation YAML. Cursor uses only its native manifest and discovery guide. Host metadata remains isolated even though the underlying skills and documentation match.

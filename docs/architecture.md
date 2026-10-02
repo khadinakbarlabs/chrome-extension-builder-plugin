@@ -1,6 +1,6 @@
 # Skills-only architecture and execution contract
 
-Target release: 2.2.2. Chrome Extension Builder's core value is a complete interactive extension development workflow delivered by skills. It needs no MCP, credential processing, persistent account settings, automatic services, or arbitrary local filesystem access. In chat alone it produces useful contracts, research briefs, architecture, UX/state specifications, code examples/artifacts, review findings, and acceptance plans in normal Markdown. Supported local execution is an optional capability of the user's chosen host.
+Target release: 2.2.3. Chrome Extension Builder's core value is a complete interactive extension development workflow delivered by skills. It needs no MCP, credential processing, persistent account settings, automatic services, or arbitrary local filesystem access. In chat alone it produces useful contracts, research briefs, architecture, UX/state specifications, code examples/artifacts, review findings, and acceptance plans in normal Markdown. Supported local execution is an optional capability of the user's chosen host.
 
 ## Portable layers
 
@@ -33,11 +33,11 @@ Every skill loads shared boundaries before its workflow. System/developer/host i
 
 The main chrome-extension-builder skill owns the conversation and reads the portable registry. Its assigned report paths govern role outputs. Lifecycle: contract/research → architecture/design/interfaces → frontend plus justified backend/integrations → assembled QA/security/performance → bounded evaluation → release → maintenance. Security starts during design and reviews final output. Local-only projects mark cloud stages not applicable with rationale. Debugging begins at reproduction and rejoins verification.
 
-Use delegated roles only where tools and authorization support them, with disjoint file ownership, immutable inputs, expected output, acceptance evidence, and next owner. Workers share a repository and cannot revert others. Otherwise run distinct serial passes and disclose lack of independence; no fictional agents or simulated proof. This Claude edition includes native text agents and commands; portable role contracts provide a fallback where these capabilities are absent.
+Use delegated roles only where tools and authorization support them, with disjoint file ownership, immutable inputs, expected output, acceptance evidence, and next owner. Workers share a repository and cannot revert others. Otherwise run distinct serial passes and disclose lack of independence; no fictional agents or simulated proof. This OpenAI edition uses native skills and portable role contracts. Supported host delegation is optional; no foreign native agent runtime is required.
 
 ## Entry points and progressive disclosure
 
-Five thin skills preserve command intent: chrome-extension-builder-build → main lifecycle; chrome-extension-builder-studio → chat planning/optional manual local planner; chrome-extension-builder-audit → architecture/security/testing/performance; chrome-extension-builder-prepare-release → release workflow; chrome-extension-builder-improve → bounded candidate comparison. They route rather than duplicate procedures. Native commands complement the skills; core conversational value needs no command discovery.
+Five thin skills preserve command intent: chrome-extension-builder-build → main lifecycle; chrome-extension-builder-studio → chat planning/optional manual local planner; chrome-extension-builder-audit → architecture/security/testing/performance; chrome-extension-builder-prepare-release → release workflow; chrome-extension-builder-improve → bounded candidate comparison. They route rather than duplicate procedures. Direct skill invocation is supported where available; core conversational value needs no command discovery.
 
 Each skill has a bounded name/description and a short body; specialist references/scripts are loaded only when relevant. Check availability before executing Node/Python/framework/browser commands. Do not assume installed dependencies, Claude variable expansion, offline access, persistent preferences, live artifacts, hardware, or browser profiles. Missing tools produce actionable limits and useful conversational artifacts.
 
@@ -53,8 +53,8 @@ Default at most three candidates per round and three rounds. Gate safety, privac
 
 Keep source/structure checks, semantic host evaluations, actual extension browser QA, deployed backend, submitted store item, and accepted version separate. Artifact existence/integrity is recorded work, not proof of its prose claims. Prepare concrete local/chat deliverables before asking for missing authority; preserve prior user intent with no blanket BUILD keyword. Irreversible/external operations remain subject to actual intent and host gates.
 
-## Native Claude distribution
+## Native OpenAI distribution
 
-The capability corpus is shared, but this release has a dedicated Claude manifest, host guide, README, invocation and presentation. All foreign native adapters and source-only release machinery are excluded. Local helpers and Studio remain optional, manually invoked and self-contained. They are not an MCP service or automatic host integration.
+The capability corpus is shared, but this release has a dedicated OpenAI manifest, host guide, README, invocation and presentation. All foreign native adapters and source-only release machinery are excluded. Local helpers and Studio remain optional, manually invoked and self-contained. They are not an MCP service or automatic host integration.
 
 A native package does not establish directory acceptance. Confirm the actual publisher, portal scan results, legal attestations and exact-version review. Full semantic model and clean-host evaluation remain unverified; source assertions or scaffold checks cannot substitute for them.

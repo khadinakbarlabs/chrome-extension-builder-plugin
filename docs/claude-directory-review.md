@@ -1,6 +1,6 @@
 # Claude directory review notes
 
-Version 2.2.2 replaces the mixed 2.2.1 package with a native Claude edition. Its 19 skills, 12 text agents and five commands remain; all `skills/*/agents/openai.yaml` files and the source-only plugin release helper are excluded. The native directory icon is supplied in the package. No MCP, hooks, credential configuration, automatic service, or installer is declared.
+Version 2.2.3 replaces the mixed 2.2.1 package with a native Claude edition. Its 19 skills, 12 text agents and five commands remain; all `skills/*/agents/openai.yaml` files and the source-only plugin release helper are excluded. The native directory icon is supplied in the package. No MCP, hooks, credential configuration, automatic service, or installer is declared.
 
 The earlier 19 image-reference findings named OpenAI metadata that is no longer in this version. This is a source correction; only a fresh directory scan can confirm the new result.
 
@@ -8,4 +8,4 @@ The extension checker and local Studio are retained because they are useful capa
 
 The core workflow works in conversation without local execution. Optional helpers require available host tools and are manually invoked. Studio binds loopback; plans remain in browser memory by default, localStorage is opt-in, and explicit exports remain with the user. Requested research uses enabled host tools with scoped queries; host retention is independent. There is no plugin-hosted service retaining data. See [Privacy](../PRIVACY.md) and [Support](../SUPPORT.md).
 
-Public branding uses the publisher-approved original browser/extension mark without Google's logo. The plugin is an independent tool for adult developers. Structural checks, helper tests and archive integrity do not establish semantic model behavior across Claude surfaces or guarantee approval. Anthropic's observed scan and reviewer decision govern directory eligibility.
+Public branding follows the selected release artwork and its rights requirements. The plugin is an independent tool for adult developers. Structural checks, helper tests and archive integrity do not establish semantic model behavior across Claude surfaces or guarantee approval. Anthropic's observed scan and reviewer decision govern directory eligibility.

@@ -1,20 +1,20 @@
-# Chrome Extension Builder for Claude
+# Chrome Extension Builder
 
-A native Claude plugin with 19 extension-building skills, 12 specialist agents, and five slash commands. Designed for Claude Code and for supported Claude/Cowork environments, with a useful conversational workflow wherever local execution is unavailable. No MCP servers, hooks, account service, or automatic startup.
+<img src="assets/chrome-extension-builder-icon.png" width="128" height="128" alt="Chrome Extension Builder browser and extension logo">
 
-## Use in Claude
+One extension-building toolkit for Claude, Codex/OpenAI, and Cursor. All editions share 19 skills, 12 specialist role contracts, the optional local Studio, and the same scaffold/check/package helpers. Native downloads contain only the metadata their host uses. Skills-only: no MCP, hooks, accounts, credential intake, or automatic startup.
 
-Ask Claude to use Chrome Extension Builder, or in Claude Code use:
+## Native editions
 
-- `/chrome-extension-builder:build-extension` — build or continue an extension.
-- `/chrome-extension-builder:extension-studio` — guided planning or the optional local Studio.
-- `/chrome-extension-builder:audit-extension` — architecture, privacy, security and behavior review.
-- `/chrome-extension-builder:release-extension` — prepare an extension ZIP and listing materials.
-- `/chrome-extension-builder:improve-extension` — bounded, evidence-based refinement.
+| Host | Repository branch | How to start |
+| --- | --- | --- |
+| Claude Code / supported Claude environments | [main](https://github.com/khadinakbarlabs/chrome-extension-builder-plugin/tree/main) | Ask to use Chrome Extension Builder; Claude Code also provides five namespaced commands and 12 native agents |
+| Codex / OpenAI | [codex](https://github.com/khadinakbarlabs/chrome-extension-builder-plugin/tree/codex) | Ask to use Chrome Extension Builder or select its exact skill name where supported |
+| Cursor | [cursor](https://github.com/khadinakbarlabs/chrome-extension-builder-plugin/tree/cursor) | Use Cursor's supported plugin/skill discovery and ask to use Chrome Extension Builder |
 
-The 12 native agents live in `agents/`; their skill preload names match the 19 skills under `skills/`. Commands live in `commands/`. Claude Code loads the native `.claude-plugin/plugin.json`; The native directory icon is supplied in the package. Available agents and tools depend on the current Claude environment. Never claim a delegation or local test that did not run.
+Download the edition for your host from [Releases](https://github.com/khadinakbarlabs/chrome-extension-builder-plugin/releases). Claude Code can load an extracted Claude edition with `claude --plugin-dir ./chrome-extension-builder`. Consult the bundled [host guide](skills/chrome-extension-builder/references/host-guide.md) for exact invocation and capabilities. Directory review/publication and host availability are separate from these development downloads.
 
-For local development of this plugin, load the extracted native directory with `claude --plugin-dir ./chrome-extension-builder`. A ZIP is a development artifact; directory availability still requires Anthropic review and publication.
+Start in conversation: “Use Chrome Extension Builder to turn my idea into an extension. Guide the architecture and UX, build the necessary artifacts, and show what still needs verification.” The conversational workflow works without local execution.
 
 ## Lifecycle and entry points
 
@@ -72,10 +72,10 @@ The tracker records evidence files/hashes, stage timestamps, and invalidation hi
 
 ## Package and review
 
-This edition contains only Claude-native host metadata. There are no OpenAI skill YAML files or Codex/portable manifests. The optional local helpers and Studio are shared extension-building capabilities; source-only plugin release tooling is excluded.
+The stable package name is `chrome-extension-builder`. These editions use one shared repository, release version, skill names, policies, and support channel. Each branch has its host's native manifest and guide; foreign runtime metadata and source-only release tooling stay outside its installable package. The OpenAI directory upload has a single named plugin root; development ZIPs expose the native manifest at the root.
 
-The public icon is the publisher-approved original browser/extension mark. Chrome compatibility does not imply Google endorsement. This independent plugin is by Khadin Akbar and is intended for adult developers.
+This independent plugin is by Khadin Akbar, intended for adult developers. Browser compatibility does not imply Google, Anthropic, OpenAI, or Cursor endorsement. The package icon identifies this toolkit; public use of third-party brand artwork requires the necessary rights.
 
 Optional local project files/storage retain only user-supplied information. Requested research can send scoped queries through the user's enabled host tools; their own retention and policies apply. No plugin-hosted service retains data. See [Privacy](PRIVACY.md), [Terms](TERMS.md), [Security](SECURITY.md), and [Support](SUPPORT.md).
 
-Source and ZIP validation do not prove semantic model behavior, every Claude surface, deployed backend behavior, Chrome Web Store acceptance, or directory approval. See [validation](docs/validation.md) and [policy evaluation cases](docs/policy-evaluations.md).
+Source/ZIP validation does not prove semantic model behavior, every host surface, backend deployment, Chrome Web Store acceptance, or directory approval. See [validation](docs/validation.md) and [policy evaluation cases](docs/policy-evaluations.md).
