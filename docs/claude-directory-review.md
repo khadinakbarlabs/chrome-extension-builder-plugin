@@ -1,6 +1,6 @@
 # Claude directory review notes
 
-Version 2.2.2 replaces the mixed 2.2.1 package with a native Claude edition. Its 19 skills, 12 text agents and five commands remain; all `skills/*/agents/openai.yaml` files and the source-only plugin release helper are excluded. The native icon is `.claude-plugin/icon.png`. No MCP, hooks, credential configuration, automatic service, or installer is declared.
+Version 2.2.2 replaces the mixed 2.2.1 package with a native Claude edition. Its 19 skills, 12 text agents and five commands remain; all `skills/*/agents/openai.yaml` files and the source-only plugin release helper are excluded. The native directory icon is supplied in the package. No MCP, hooks, credential configuration, automatic service, or installer is declared.
 
 The earlier 19 image-reference findings named OpenAI metadata that is no longer in this version. This is a source correction; only a fresh directory scan can confirm the new result.
 

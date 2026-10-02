@@ -30,4 +30,4 @@ Release 2.2.2, updated 2026-10-02. Plugin identity stays `chrome-extension-build
 
 Release 2.2.2 uses the native host guide and README for this edition. Skill names remain in the `chrome-extension-builder` namespace. The public listing uses the original browser/extension icon supplied and approved by the publisher. Public archives exclude the privately selected Chrome-logo composite and unreferenced historical icons.
 
-Claude reads the native manifest and `.claude-plugin/icon.png`; 12 root text agents and five commands route to the skills. No OpenAI metadata is included.
+Claude reads its native manifest and directory icon; 12 root text agents and five commands route to the skills. No OpenAI metadata is included.

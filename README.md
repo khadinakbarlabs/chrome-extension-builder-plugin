@@ -12,7 +12,7 @@ Ask Claude to use Chrome Extension Builder, or in Claude Code use:
 - `/chrome-extension-builder:release-extension` — prepare an extension ZIP and listing materials.
 - `/chrome-extension-builder:improve-extension` — bounded, evidence-based refinement.
 
-The 12 native agents live in `agents/`; their skill preload names match the 19 skills under `skills/`. Commands live in `commands/`. Claude Code loads the native `.claude-plugin/plugin.json`; `.claude-plugin/icon.png` provides the directory icon. Available agents and tools depend on the current Claude environment. Never claim a delegation or local test that did not run.
+The 12 native agents live in `agents/`; their skill preload names match the 19 skills under `skills/`. Commands live in `commands/`. Claude Code loads the native `.claude-plugin/plugin.json`; The native directory icon is supplied in the package. Available agents and tools depend on the current Claude environment. Never claim a delegation or local test that did not run.
 
 For local development of this plugin, load the extracted native directory with `claude --plugin-dir ./chrome-extension-builder`. A ZIP is a development artifact; directory availability still requires Anthropic review and publication.
 
