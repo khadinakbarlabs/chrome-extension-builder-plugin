@@ -1,0 +1,7 @@
+interface:
+  display_name: "Chrome Extension Builder: Debugging"
+  short_description: "Reproduce and repair extension failures"
+  default_prompt: "Use $chrome-extension-builder-debugging to reproduce this current extension defect, fix its cause, and verify the original interaction."
+  icon_small: "../chrome-extension-builder/assets/icon.png"
+  icon_large: "../chrome-extension-builder/assets/icon.png"
+  brand_color: "#3559E9"

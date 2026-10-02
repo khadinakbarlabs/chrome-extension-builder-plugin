@@ -1,0 +1,279 @@
+{
+  "schema_version": 1,
+  "name": "Chrome Extension Builder specialist team",
+  "orchestrator": {
+    "role": "extension-orchestrator",
+    "skill": "chrome-extension-builder",
+    "runtime": "main-conversation",
+    "owns": [
+      "session state",
+      "shared contract assignments",
+      "user dialogue",
+      "final evidence aggregation"
+    ]
+  },
+  "roles": [
+    {
+      "id": "product-researcher",
+      "agent": "role-product-researcher.md",
+      "skill": "chrome-extension-builder-research",
+      "skills": [
+        "chrome-extension-builder-research"
+      ],
+      "report": "research/research.md",
+      "mode": "specialist"
+    },
+    {
+      "id": "extension-architect",
+      "agent": "role-extension-architect.md",
+      "skill": "chrome-extension-builder-architecture",
+      "skills": [
+        "chrome-extension-builder-architecture"
+      ],
+      "report": "architecture/architecture.md",
+      "mode": "specialist"
+    },
+    {
+      "id": "ux-designer",
+      "agent": "role-ux-designer.md",
+      "skill": "chrome-extension-builder-ux-design",
+      "skills": [
+        "chrome-extension-builder-ux-design"
+      ],
+      "report": "design/design-spec.md",
+      "mode": "specialist"
+    },
+    {
+      "id": "frontend-engineer",
+      "agent": "role-frontend-engineer.md",
+      "skill": "chrome-extension-builder-frontend",
+      "skills": [
+        "chrome-extension-builder-frontend"
+      ],
+      "report": "implementation/frontend-handoff.md",
+      "mode": "specialist"
+    },
+    {
+      "id": "backend-engineer",
+      "agent": "role-backend-engineer.md",
+      "skill": "chrome-extension-builder-backend",
+      "skills": [
+        "chrome-extension-builder-backend"
+      ],
+      "report": "implementation/backend-handoff.md",
+      "mode": "specialist"
+    },
+    {
+      "id": "integration-engineer",
+      "agent": "role-integration-engineer.md",
+      "skill": "chrome-extension-builder-integrations",
+      "skills": [
+        "chrome-extension-builder-integrations"
+      ],
+      "report": "implementation/integrations.md",
+      "mode": "specialist"
+    },
+    {
+      "id": "security-reviewer",
+      "agent": "role-security-reviewer.md",
+      "skill": "chrome-extension-builder-security",
+      "skills": [
+        "chrome-extension-builder-security"
+      ],
+      "report": "quality/security-review.md",
+      "mode": "review"
+    },
+    {
+      "id": "qa-engineer",
+      "agent": "role-qa-engineer.md",
+      "skill": "chrome-extension-builder-testing",
+      "skills": [
+        "chrome-extension-builder-testing"
+      ],
+      "report": "quality/test-report.md",
+      "mode": "specialist"
+    },
+    {
+      "id": "performance-engineer",
+      "agent": "role-performance-engineer.md",
+      "skill": "chrome-extension-builder-performance",
+      "skills": [
+        "chrome-extension-builder-performance"
+      ],
+      "report": "quality/performance-report.md",
+      "mode": "specialist"
+    },
+    {
+      "id": "release-manager",
+      "agent": "role-release-manager.md",
+      "skill": "chrome-extension-builder-release",
+      "skills": [
+        "chrome-extension-builder-release"
+      ],
+      "report": "release/release-report.md",
+      "mode": "specialist"
+    },
+    {
+      "id": "maintenance-engineer",
+      "agent": "role-maintenance-engineer.md",
+      "skill": "chrome-extension-builder-maintenance",
+      "skills": [
+        "chrome-extension-builder-maintenance",
+        "chrome-extension-builder-debugging"
+      ],
+      "report": "maintenance/handoff.md",
+      "mode": "specialist"
+    },
+    {
+      "id": "independent-evaluator",
+      "agent": "role-independent-evaluator.md",
+      "skill": "chrome-extension-builder-evolution",
+      "skills": [
+        "chrome-extension-builder-evolution"
+      ],
+      "report": "quality/evaluation.md",
+      "mode": "review"
+    }
+  ],
+  "graph": [
+    {
+      "id": "research",
+      "role": "product-researcher",
+      "after": [],
+      "output": "research brief and acceptance journeys"
+    },
+    {
+      "id": "architecture",
+      "role": "extension-architect",
+      "after": [
+        "research"
+      ],
+      "output": "ADR, data/permission inventory, typed contracts and exclusive ownership"
+    },
+    {
+      "id": "design",
+      "role": "ux-designer",
+      "after": [
+        "architecture"
+      ],
+      "output": "interaction states, visual spec and accessibility criteria"
+    },
+    {
+      "id": "backend",
+      "role": "backend-engineer",
+      "after": [
+        "architecture"
+      ],
+      "condition": "cloud or hybrid backend justified",
+      "output": "API/authorization/storage implementation"
+    },
+    {
+      "id": "integrations",
+      "role": "integration-engineer",
+      "after": [
+        "architecture"
+      ],
+      "condition": "external integrations justified",
+      "output": "scoped provider adapters and contract fixtures"
+    },
+    {
+      "id": "frontend",
+      "role": "frontend-engineer",
+      "after": [
+        "design"
+      ],
+      "output": "browser surfaces and execution-context implementation"
+    },
+    {
+      "id": "integration-check",
+      "role": "qa-engineer",
+      "after": [
+        "frontend",
+        "backend",
+        "integrations"
+      ],
+      "output": "assembled exact-build behavioral evidence"
+    },
+    {
+      "id": "security",
+      "role": "security-reviewer",
+      "after": [
+        "integration-check"
+      ],
+      "output": "independent threat/policy findings"
+    },
+    {
+      "id": "performance",
+      "role": "performance-engineer",
+      "after": [
+        "integration-check"
+      ],
+      "output": "measured budgets and cost evidence"
+    },
+    {
+      "id": "evaluation",
+      "role": "independent-evaluator",
+      "after": [
+        "security",
+        "performance"
+      ],
+      "output": "hard-gate result, ranked candidate evidence and bounded corrections"
+    },
+    {
+      "id": "release",
+      "role": "release-manager",
+      "after": [
+        "evaluation"
+      ],
+      "output": "review ZIP, listing/privacy materials and actual distribution status"
+    },
+    {
+      "id": "maintenance",
+      "role": "maintenance-engineer",
+      "after": [
+        "release"
+      ],
+      "output": "incident/update handoff and regression evidence"
+    }
+  ],
+  "scheduling": {
+    "conditional_nodes": "Mark not-applicable with a reason; dependents then proceed. Missing evidence never counts as pass.",
+    "parallelism": "Only after contracts are frozen and file ownership is disjoint. Backend/integrations/frontend may run concurrently; security/performance may review independently after integration evidence.",
+    "shared_files": "One owner at a time. Orchestrator owns session state; architecture owns shared interface definitions until explicitly handed off.",
+    "tool_fallback": "The coordinator loads the mapped lifecycle skill and role prompt relative to this registry. Claude may invoke plugin-scoped native agents when available. Other hosts use available permitted delegation, or execute roles serially without claiming independent reviewers ran.",
+    "authorization": "Use the user's existing scope and provider permissions. Prepare concrete artifacts before asking about consequential missing authorization. No blanket extra approval gate."
+  },
+  "evolution": {
+    "max_candidates_per_round": 3,
+    "max_rounds": 3,
+    "independent_evaluator": "independent-evaluator",
+    "hard_blockers": [
+      "covert or undisclosed collection",
+      "secret exposure",
+      "executable remote code",
+      "broken authorization",
+      "unsafe page-message trust boundary",
+      "missing required runtime evidence",
+      "invalid release package"
+    ],
+    "weights": {
+      "task_success": 25,
+      "security_privacy": 20,
+      "usability_accessibility": 20,
+      "architecture_reliability": 15,
+      "test_evidence": 10,
+      "performance_cost": 10
+    },
+    "dimension_scale": [
+      0,
+      5
+    ],
+    "early_exit": [
+      "acceptance criteria pass",
+      "no material improvement",
+      "same blocker repeats",
+      "budget exhausted"
+    ],
+    "selection": "Retain strongest verified candidate; unresolved blockers remain visible."
+  }
+}

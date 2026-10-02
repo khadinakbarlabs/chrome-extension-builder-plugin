@@ -1,0 +1,7 @@
+interface:
+  display_name: "Chrome Extension Builder: Audit"
+  short_description: "Review extension architecture and readiness"
+  default_prompt: "Use $chrome-extension-builder-audit to review this sanitized extension project and report actionable findings with honest evidence."
+  icon_small: "../chrome-extension-builder/assets/icon.png"
+  icon_large: "../chrome-extension-builder/assets/icon.png"
+  brand_color: "#3559E9"

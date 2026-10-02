@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Chrome Extension Builder · Studio</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#workspace">Skip to workspace</a>
+  <div class="shell">
+    <aside class="sidebar" aria-label="Workflow">
+      <a class="brand" href="./index.html" aria-label="Extension Builder home"><span class="brand-icon" aria-hidden="true">↗</span><span>Extension<br><strong>Builder</strong></span></a>
+      <div class="studio-label">YOUR LOCAL STUDIO <span class="status-dot" aria-hidden="true"></span></div>
+      <nav id="steps" aria-label="Build phases"></nav>
+      <div class="sidebar-bottom"><div class="local-badge">◉ Local workspace</div><p>No account. No remote requests.<br>Your plan stays in this browser.</p><button id="theme" class="button quiet" type="button">Use dark theme</button></div>
+    </aside>
+    <div class="main-shell">
+      <header class="topbar"><span class="breadcrumb">WORKSPACE <span aria-hidden="true">/</span> <span id="project-crumb">My useful extension</span></span><div class="top-actions"><button id="import" class="button quiet" type="button">Import session</button><button id="export" class="button outline" type="button">Export session ↗</button><input id="import-file" type="file" accept=".json,application/json" hidden></div></header>
+      <main id="workspace" tabindex="-1">
+        <div class="page-heading"><div><div class="eyebrow">FROM IDEA TO A USEFUL EXTENSION</div><h1>Build with intention.</h1><p class="intro">A clear purpose. Thoughtful architecture. An experience people trust.</p></div><div class="session-chip">Manifest V3 <span>·</span> Planning studio</div></div>
+        <div id="notice" class="notice" role="status" aria-live="polite"></div>
+        <div class="workspace-grid">
+          <section class="editor card" aria-labelledby="phase-title">
+            <div class="section-heading"><span id="phase-number" class="phase-number">01</span><div><div class="eyebrow" id="phase-label">RESEARCH</div><h2 id="phase-title">Find the useful edge</h2></div><span class="phase-indicator">WORKING DRAFT</span></div>
+            <p id="phase-guidance" class="guidance"></p>
+            <form id="project-form" novalidate>
+              <div class="form-row"><label for="name">Project name</label><input id="name" name="name" maxlength="75" autocomplete="off" value="My useful extension"></div>
+              <div class="form-row"><div class="label-row"><label for="purpose">One purpose, one clear outcome</label><span id="purpose-count">0 / 132 characters</span></div><textarea id="purpose" name="purpose" maxlength="132" rows="3" placeholder="Help readers save useful page excerpts to a private reading list."></textarea><p class="hint">What does someone accomplish? No API keys, tokens, or personal data.</p></div>
+              <div class="two-col"><div class="form-row"><label for="type">Product model</label><select id="type" name="type"><option value="local">Local browser utility</option><option value="cloud">Cloud app companion</option><option value="hybrid">Hybrid · offline + cloud</option></select></div><div class="form-row"><label for="surface">Primary surface</label><select id="surface" name="surface"><option value="popup">Compact popup</option><option value="sidepanel">Persistent side panel</option></select></div></div>
+              <div id="technical-fields">
+                <div class="form-row"><label for="backend">Backend plan</label><select id="backend" name="backend"><option value="none">No server required</option><option value="existing">Connect an existing API</option><option value="new">Design a new backend</option></select><p id="backend-hint" class="hint"></p></div>
+                <fieldset class="form-row"><legend>Permissions to justify</legend><div id="permissions" class="permission-options"></div><p class="hint">These are planning choices. The generated starter keeps its own minimal manifest.</p></fieldset>
+                <div class="form-row"><label for="domains">Exact hosts, if the task needs them</label><textarea id="domains" name="domains" maxlength="1000" rows="2" placeholder="https://example.com/*"></textarea><p class="hint">One HTTPS host pattern per line. Choose activeTab for a user-initiated page action when suitable.</p></div>
+              </div>
+            </form>
+            <div id="validation" class="validation" aria-live="polite"></div>
+            <div class="checklist-section"><div class="label-row"><h3 id="checklist-title">Phase checklist</h3><span class="declared-label">YOUR DECLARATIONS</span></div><div id="checklist"></div></div>
+            <div class="editor-footer"><button id="previous" class="button quiet" type="button">← Previous</button><button id="next" class="button primary" type="button">Next phase →</button></div>
+          </section>
+          <aside class="preview-column" aria-label="Live plan preview">
+            <section class="preview card"><div class="label-row"><h3>Experience preview</h3><span class="preview-label">CONCEPT</span></div><div class="browser-mock"><div class="browser-top"><div class="dots" aria-hidden="true"><i></i><i></i><i></i></div><span>A useful moment, simplified</span><span aria-hidden="true">◇</span></div><div class="browser-page"><div class="page-lines" aria-hidden="true"><b></b><i></i><i></i><i></i><i></i></div><div id="extension-preview" class="extension-preview"><div class="mock-brand"><span aria-hidden="true">↗</span><strong id="preview-name">My useful extension</strong></div><div class="mock-tag" id="preview-tag">LOCAL & PRIVATE</div><p id="preview-purpose">Your extension’s purpose appears here.</p><div class="mock-action" aria-hidden="true">A clear next action <span>→</span></div><div class="mock-bottom">Purposeful, accessible, considered.</div></div></div></div><p class="hint">A planning illustration, not a running extension. Refine the actual interaction with the design specialist.</p></section>
+            <section class="readiness card"><div class="label-row"><h3>Plan readiness</h3><strong id="progress-count">0 / 18</strong></div><progress id="progress" value="0" max="18" aria-label="Declared checklist completion"></progress><div id="phase-progress" class="phase-progress"></div><div class="evidence-note"><span aria-hidden="true">ⓘ</span><p>Checked items record your declarations. Runtime, backend deployment, submission, and public listing remain <strong>unverified</strong>.</p></div></section>
+            <section class="flow card"><div class="label-row"><h3>Data & trust</h3><span class="preview-label">BOUNDARIES</span></div><div id="data-flow" class="data-flow"></div><p id="permission-summary" class="hint"></p><p class="hint">Validate every message. Treat page content as untrusted. Keep privileged secrets on the server.</p></section>
+          </aside>
+        </div>
+        <section class="candidates card" aria-labelledby="candidate-title"><div class="section-top"><div><div class="eyebrow">BOUNDED COMPARISON</div><h2 id="candidate-title">Explore. Score. Refine.</h2><p class="guidance">Compare a small set of approaches against safety, simplicity, usability, and resilience. Apply one to your plan, then use evidence to refine it.</p></div><button id="evolve" class="button outline" type="button">Compare next round</button></div><div class="candidate-meta"><span id="round-label">Round 1 of 3</span><span id="score-weights">35% safety · 20% simplicity · 25% usability · 20% resilience</span></div><div id="candidates" class="candidate-grid"></div><p class="hint">These are illustrative planning presets using four simplified dimensions, not measurements or research results. The plugin’s independent evaluator uses six evidence-based dimensions. Safety failures cannot be selected. Three rounds bound exploration; the agents validate the chosen architecture.</p></section>
+        <div class="lower-grid"><section class="team card"><div class="eyebrow">THE SPECIALIST TEAM</div><h2>A complete build, many perspectives.</h2><p class="guidance">Use the plugin’s workflow to coordinate these roles. This workbench prepares their shared brief; it does not start agents or deploy services.</p><div class="orchestrator-note"><strong>Orchestrator</strong><span>Coordinates contracts, ownership, specialist reports, and the shared evidence handoff.</span></div><div id="team" class="team-grid"></div></section><section class="capabilities card"><div class="eyebrow">CHOOSE THE RIGHT SHAPE</div><h2>From local tool to cloud companion.</h2><div class="table-scroll"><table><caption class="sr-only">Product capability planning matrix</caption><thead><tr><th>Concern</th><th>Local</th><th>Cloud</th><th>Hybrid</th></tr></thead><tbody><tr><th>Storage</th><td>On device</td><td>Account scoped</td><td>Local + sync</td></tr><tr><th>Identity</th><td>Optional</td><td>Required for private data</td><td>Optional until sync</td></tr><tr><th>Offline</th><td>Core use</td><td>Explicit fallback</td><td>Core + conflict plan</td></tr><tr><th>Secrets</th><td>Never privileged client keys</td><td>Server only</td><td>Server only</td></tr><tr><th>Release proof</th><td>Chrome artifact</td><td>Artifact + API</td><td>Artifact + sync</td></tr></tbody></table></div></section></div>
+        <section class="handoff card"><div><div class="eyebrow">MAKE THE NEXT STEP CONCRETE</div><h2>Your brief, ready for the team.</h2><p class="guidance">Export a build brief with architecture choices, checklist declarations, and a safely quoted starter command.</p></div><div class="handoff-actions"><button id="brief" class="button primary" type="button">Download build brief ↗</button><button id="commands" class="button outline" type="button">Show scaffold command</button></div><div id="command-area" hidden><pre id="command-text" tabindex="0"></pre><button id="copy-command" class="button quiet" type="button">Copy command</button><p class="hint">Run from the plugin source folder with Node and Python available. The starter does not implement your selected cloud services or custom permissions.</p></div></section>
+        <footer class="workspace-footer"><label class="remember"><input id="remember" type="checkbox"> Remember this plan on this device</label><p id="storage-state">Session stays in memory until you export or enable remembering.</p><button id="reset" class="button quiet danger" type="button">Clear plan</button></footer>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

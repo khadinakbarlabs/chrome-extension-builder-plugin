@@ -1,0 +1,7 @@
+interface:
+  display_name: "Chrome Extension Builder: Performance"
+  short_description: "Measure speed, page impact, and resources"
+  default_prompt: "Use $chrome-extension-builder-performance to baseline and improve this extension without weakening behavior, privacy, or security."
+  icon_small: "../chrome-extension-builder/assets/icon.png"
+  icon_large: "../chrome-extension-builder/assets/icon.png"
+  brand_color: "#3559E9"
