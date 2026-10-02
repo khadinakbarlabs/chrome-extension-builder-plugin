@@ -1,7 +1,0 @@
-interface:
-  display_name: "Chrome Extension Builder: Release"
-  short_description: "Prepare packages, listings, and releases"
-  default_prompt: "Use $chrome-extension-builder-release to verify the exact release artifact and prepare store, privacy, CI, and authorized submission steps."
-  icon_small: "../chrome-extension-builder/assets/icon.png"
-  icon_large: "../chrome-extension-builder/assets/icon.png"
-  brand_color: "#3559E9"

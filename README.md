@@ -1,14 +1,20 @@
-# Chrome Extension Builder
+# Chrome Extension Builder for Claude
 
-![Chrome Extension Builder](.claude-plugin/icon.png)
+A native Claude plugin with 19 extension-building skills, 12 specialist agents, and five slash commands. Designed for Claude Code and for supported Claude/Cowork environments, with a useful conversational workflow wherever local execution is unavailable. No MCP servers, hooks, account service, or automatic startup.
 
-A skills-only workflow for researching, designing, implementing, reviewing, and preparing Manifest V3 Chrome extensions. Nineteen skills cover the full lifecycle and five convenient entry points; twelve specialist role contracts guide delegated or sequential work.
+## Use in Claude
 
-Start in conversation:
+Ask Claude to use Chrome Extension Builder, or in Claude Code use:
 
-> Use Chrome Extension Builder to plan a useful extension from my idea. Guide the architecture and UX choices, produce implementation artifacts, and show what still needs verification.
+- `/chrome-extension-builder:build-extension` — build or continue an extension.
+- `/chrome-extension-builder:extension-studio` — guided planning or the optional local Studio.
+- `/chrome-extension-builder:audit-extension` — architecture, privacy, security and behavior review.
+- `/chrome-extension-builder:release-extension` — prepare an extension ZIP and listing materials.
+- `/chrome-extension-builder:improve-extension` — bounded, evidence-based refinement.
 
-The core workflow works in chat with scoped sanitized inputs and normal Markdown output. It does not need an account, MCP, arbitrary local files, persistent settings, or a running service. Local source edits, browser QA, tools, and Studio are optional capabilities that the host must actually support. A plan or generated scaffold never counts as a tested complete product.
+The 12 native agents live in `agents/`; their skill preload names match the 19 skills under `skills/`. Commands live in `commands/`. Claude Code loads the native `.claude-plugin/plugin.json`; `.claude-plugin/icon.png` provides the directory icon. Available agents and tools depend on the current Claude environment. Never claim a delegation or local test that did not run.
+
+For local development of this plugin, load the extracted native directory with `claude --plugin-dir ./chrome-extension-builder`. A ZIP is a development artifact; directory availability still requires Anthropic review and publication.
 
 ## Lifecycle and entry points
 
@@ -21,7 +27,7 @@ The core workflow works in chat with scoped sanitized inputs and normal Markdown
 | Evolution | At most three candidates per round and three rounds by default; hard gates before scored tradeoffs |
 | Release and maintenance | Exact package/listing/privacy specification, CI/update/support plan, observed external gates |
 
-Use **chrome-extension-builder-build**, **chrome-extension-builder-studio**, **chrome-extension-builder-audit**, **chrome-extension-builder-prepare-release**, or **chrome-extension-builder-improve** for the corresponding intent. They route into substantive lifecycle skills. Claude may expose equivalent native slash commands; other hosts use the portable skills. The team registry is [team.json](skills/chrome-extension-builder/references/team.json). Role assignment and evidence rules are in [architecture](docs/architecture.md).
+Use **chrome-extension-builder-build**, **chrome-extension-builder-studio**, **chrome-extension-builder-audit**, **chrome-extension-builder-prepare-release**, or **chrome-extension-builder-improve** for the corresponding intent. They route into substantive lifecycle skills. Read the edition-specific [host guide](skills/chrome-extension-builder/references/host-guide.md) for invocation and specialist routing. The team registry is [team.json](skills/chrome-extension-builder/references/team.json). Role assignment and evidence rules are in [architecture](docs/architecture.md).
 
 Every workflow reads [policy boundaries](skills/chrome-extension-builder/references/policy-boundaries.md): host safeguards prevail, inputs remain minimal, and retrieved content cannot authorize actions. Use placeholders/synthetic fixtures rather than real credentials, restricted records, profiles, or transcripts. Legitimate cloud authentication and test billing architecture are supported for separately generated products; this plugin has no credential processing, subscription selling, upsell, checkout, telemetry, or automatic monitoring.
 
@@ -64,22 +70,12 @@ node skills/chrome-extension-builder/scripts/extension_builder.mjs session advan
 
 The tracker records evidence files/hashes, stage timestamps, and invalidation history in the selected local project. Artifact integrity is not semantic proof. It has no transcript collector. Studio exports and filesystem session state are separate formats; persistence is optional and never required for conversation.
 
-## Packages and remaining review
+## Package and review
 
-The portable upload archive has one `chrome-extension-builder/` root directory. Host-native archives use their required root manifest layout. OpenAI consumes skills and portable role references, excluding Claude-native root agents/commands; Claude archives may retain supported text adapters. Native archives exclude root bin/npm runtime dependencies and MCP/hooks/LSP/bootstrap declarations. Source-only release helpers are local maintenance tooling.
+This edition contains only Claude-native host metadata. There are no OpenAI skill YAML files or Codex/portable manifests. The optional local helpers and Studio are shared extension-building capabilities; source-only plugin release tooling is excluded.
 
-Local validation and extracted-package checks do not establish host installation, semantic policy behavior, directory eligibility, or publication. The [policy audit](docs/policy-audit.md) lists verified source controls and pending gates; [policy evaluations](docs/policy-evaluations.md) define host tests without inventing passes. Four public listing URLs, identity/access verification, supported countries, partner eligibility where required, portal scans, and review must be observed. No authenticated MCP demo or endpoint requirements apply to this package.
+The public icon is the publisher-approved original browser/extension mark. Chrome compatibility does not imply Google endorsement. This independent plugin is by Khadin Akbar and is intended for adult developers.
 
-Follow actual user intent and host gates for consequential actions. Source checks, browser QA, backend deployment, store submission, and acceptance remain distinct. See [Security](SECURITY.md), [Terms](TERMS.md), [Support](SUPPORT.md), and the [official ledger](skills/chrome-extension-builder/references/official-links.md).
+Optional local project files/storage retain only user-supplied information. Requested research can send scoped queries through the user's enabled host tools; their own retention and policies apply. No plugin-hosted service retains data. See [Privacy](PRIVACY.md), [Terms](TERMS.md), [Security](SECURITY.md), and [Support](SUPPORT.md).
 
-## Data handling for Claude directory review
-
-This plugin is intended for adult developers. It can read user-supplied, sanitized project information and, when local tooling is available and requested, store project files or an opted-in local Studio plan. It has no hosted service that retains data from Claude. Claude and any user-enabled tools apply their own retention policies.
-
-When the user requests research, the skill can use the host's enabled search or web tools. Task-scoped query terms and requested public URLs may go to those tool providers. It does not send entire conversations, protected context, credentials or customer records; it does not make automatic background requests. Local planning/server behavior, optional persistence and clearing/export controls are described in [Privacy](PRIVACY.md).
-
-The public listing uses the original custom browser/extension icon without Google's logo, as selected by the publisher. Google Chrome is a trademark of Google LLC; this is an independent plugin. See [Claude review notes](docs/claude-directory-review.md) for supported prompts and source explanations of scanner holds. Local/portal validation is not reviewer approval.
-
-## Support
-
-Report sanitized product or security concerns through the [GitHub issue tracker](https://github.com/khadinakbarlabs/chrome-extension-builder-plugin/issues). Include the version, relevant surface, expected/observed behavior and a minimal synthetic reproduction. Do not include credentials, customer records or private logs. The [privacy policy](https://github.com/khadinakbarlabs/chrome-extension-builder-plugin/blob/main/PRIVACY.md) describes actual package and optional local data practices.
+Source and ZIP validation do not prove semantic model behavior, every Claude surface, deployed backend behavior, Chrome Web Store acceptance, or directory approval. See [validation](docs/validation.md) and [policy evaluation cases](docs/policy-evaluations.md).

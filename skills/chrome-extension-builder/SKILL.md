@@ -5,7 +5,7 @@ description: Lead an interactive Manifest V3 Chrome extension workflow from rese
 
 # Chrome Extension Builder
 
-Before any workflow, read [policy boundaries](references/policy-boundaries.md). Host instructions and safeguards take priority. Use only task-scoped, sanitized inputs and synthetic fixtures. This is a skills-only plugin with no MCP, account service, credential intake, or automatic background services.
+Before any workflow, read the native [host guide](references/host-guide.md) and [policy boundaries](references/policy-boundaries.md). Host instructions and safeguards take priority. Use only task-scoped, sanitized inputs and synthetic fixtures. This is a skills-only plugin with no MCP, account service, credential intake, or automatic background services.
 
 ## Start interactively
 
@@ -15,7 +15,7 @@ Capture purpose, trigger, browser contexts, exact data/hosts, permission rationa
 
 ## Select the team
 
-Read [team.json](references/team.json) and the selected `references/role-<id>.md` prompt. Its report paths and rubric govern assignments. Load only the relevant skills below. In a capable authorized host, delegate disjoint file ownership and explicit inputs/outputs; otherwise execute distinct sequential passes and disclose their independence limit. Claude-native agents are an optional host adapter, not a portable prerequisite. Never invent agent runs.
+Read [team.json](references/team.json) and the selected `references/role-<id>.md` prompt. Its report paths and rubric govern assignments. Load only the relevant skills below. In a capable authorized host, delegate disjoint file ownership and explicit inputs/outputs; otherwise execute distinct sequential passes and disclose their independence limit. Use the native specialist agents when available; otherwise run the role contracts sequentially. Never invent agent runs.
 
 | Work | Skill | Role |
 | --- | --- | --- |

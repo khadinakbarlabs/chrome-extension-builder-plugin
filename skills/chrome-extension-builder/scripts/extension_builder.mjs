@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import { spawn } from 'node:child_process';
+import { existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { resolve, dirname } from 'node:path';
 
@@ -11,11 +12,15 @@ const tools = {
   package: ['skills/chrome-extension-builder/scripts/package_extension.py'],
   session: ['skills/chrome-extension-builder/scripts/session.py'],
   studio: ['scripts/serve_studio.py'],
-  'validate-plugin': ['scripts/release_plugin.py', 'validate'],
-  bundle: ['scripts/release_plugin.py', 'bundle'],
 };
+const sourceCheckout = existsSync(resolve(root, 'scripts/release_plugin.py'));
+if (sourceCheckout) {
+  tools['validate-plugin'] = ['scripts/release_plugin.py', 'validate'];
+  tools.bundle = ['scripts/release_plugin.py', 'bundle'];
+}
+const maintenanceHelp = sourceCheckout ? '\n  validate-plugin  Validate this plugin source checkout\n  bundle           Build isolated archives from the source checkout' : '';
 if (!command || ['help', '--help', '-h'].includes(command)) {
-  console.log(`Chrome Extension Builder\n\nUsage: chrome-extension-builder <command> [options]\n\n  studio           Open a local interactive planning workspace\n  scaffold         Generate a working Manifest V3 starter\n  check            Inspect an extension build directory\n  package          Validate and ZIP an extension build directory\n  session          Initialize, inspect, or advance an evidence-backed project\n  validate-plugin  Validate this plugin's source and references\n  bundle           Build isolated archives from the full source checkout\n\nRun any command with --help for options. Requires Node.js and Python 3.10+.\nStudio prints a loopback URL; open it in a browser. No account or cloud service is needed.`);
+  console.log(`Chrome Extension Builder\n\nUsage: chrome-extension-builder <command> [options]\n\n  studio           Open a local interactive planning workspace\n  scaffold         Generate a working Manifest V3 starter\n  check            Inspect an extension build directory\n  package          Validate and ZIP an extension build directory\n  session          Initialize, inspect, or advance an evidence-backed project${maintenanceHelp}\n\nRun any command with --help for options. Requires Node.js and Python 3.10+.\nStudio prints a loopback URL; open it in a browser. No account or cloud service is needed.`);
 } else if (command === '--version') {
   const { readFile } = await import('node:fs/promises');
   let version;
@@ -31,7 +36,7 @@ if (!command || ['help', '--help', '-h'].includes(command)) {
   if (!version) throw new Error('No plugin version metadata found.');
   console.log(version);
 } else if (!Object.hasOwn(tools, command)) {
-  console.error(`Unknown command: ${command}. Use --help.`);
+  console.error(['bundle', 'validate-plugin'].includes(command) ? 'Plugin maintenance requires the complete source checkout.' : `Unknown command: ${command}. Use --help.`);
   process.exitCode = 2;
 } else {
   const [script, ...prefix] = tools[command];

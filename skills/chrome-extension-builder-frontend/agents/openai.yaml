@@ -1,7 +1,0 @@
-interface:
-  display_name: "Chrome Extension Builder: Frontend"
-  short_description: "Build popup, panel, options, and page UI"
-  default_prompt: "Use $chrome-extension-builder-frontend to implement the agreed extension UI with packaged assets, resilient state, and real browser verification."
-  icon_small: "../chrome-extension-builder/assets/icon.png"
-  icon_large: "../chrome-extension-builder/assets/icon.png"
-  brand_color: "#3559E9"

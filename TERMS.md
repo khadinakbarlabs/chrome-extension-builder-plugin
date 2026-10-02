@@ -8,4 +8,4 @@ Users remain responsible for the separately generated product's permissions, dat
 
 Local checks, source review, test plans, and packaged artifacts do not guarantee host-directory eligibility, security, regulatory compliance, or Chrome Web Store acceptance. This package is not legal/clinical/financial advice or an endorsement by OpenAI, Anthropic, Google, or Chrome. The source license is in LICENSE; these operational terms do not replace it.
 
-Public listing URLs, developer verification, supported regions, portal scans, host tests, and review remain pending until observed. This local document is not evidence of a published terms URL or accepted platform attestations.
+These terms describe this published source package. Platform submission, developer verification, scans and directory review are separate; use of this document does not accept a platform agreement on the publisher’s behalf.

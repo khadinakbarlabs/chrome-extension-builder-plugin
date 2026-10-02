@@ -1,7 +1,0 @@
-interface:
-  display_name: "Chrome Extension Builder: Security"
-  short_description: "Review permissions, privacy, and trust"
-  default_prompt: "Use $chrome-extension-builder-security to review the actual extension artifact and backend for security, permission, and privacy release blockers."
-  icon_small: "../chrome-extension-builder/assets/icon.png"
-  icon_large: "../chrome-extension-builder/assets/icon.png"
-  brand_color: "#3559E9"

@@ -6,8 +6,6 @@ For actual browser failures, include browser/version, build identity, surface/ac
 
 If tools or local access are absent, the conversational workflow can still produce briefs, architecture, UI specifications, code, and tests in normal Markdown. Missing runtime proof should be listed as unrun, not a pass. Studio is optional and manually started; installation does not start services or connect accounts.
 
-No public support URL or dedicated contact is configured in this package. A reachable published support contact, along with homepage/privacy/terms links, must be verified before a public directory listing. Do not invent an address or send reports to an unrelated service.
+## Get help
 
-## Public Claude package support
-
-The public package uses the GitHub issue tracker at https://github.com/khadinakbarlabs/chrome-extension-builder-plugin/issues for product and security concerns. Submit sanitized, minimal synthetic reproductions only; do not share credentials or private records. Earlier pending-endpoint notes above refer to the separate OpenAI/Cloudflare preparation, not this GitHub channel.
+Report a minimal sanitized issue at https://github.com/khadinakbarlabs/chrome-extension-builder-plugin/issues. Do not include private logs or credentials. This public issue tracker is the support channel; there is no promised response-time guarantee.

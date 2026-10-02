@@ -1,7 +1,0 @@
-interface:
-  display_name: "Chrome Extension Builder: Integrations"
-  short_description: "Connect sites, SaaS, AI, and cloud apps"
-  default_prompt: "Use $chrome-extension-builder-integrations to implement scoped, consent-aware integrations and verify the extension-to-provider journey."
-  icon_small: "../chrome-extension-builder/assets/icon.png"
-  icon_large: "../chrome-extension-builder/assets/icon.png"
-  brand_color: "#3559E9"

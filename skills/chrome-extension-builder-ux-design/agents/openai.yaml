@@ -1,7 +1,0 @@
-interface:
-  display_name: "Chrome Extension Builder: UX Design"
-  short_description: "Create polished accessible browser journeys"
-  default_prompt: "Use $chrome-extension-builder-ux-design to design an interactive extension journey with accessible states, tokens, and clear permission flows."
-  icon_small: "../chrome-extension-builder/assets/icon.png"
-  icon_large: "../chrome-extension-builder/assets/icon.png"
-  brand_color: "#3559E9"

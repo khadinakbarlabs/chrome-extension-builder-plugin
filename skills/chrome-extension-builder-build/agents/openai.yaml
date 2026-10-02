@@ -1,7 +1,0 @@
-interface:
-  display_name: "Chrome Extension Builder: Build"
-  short_description: "Start a guided extension build"
-  default_prompt: "Use $chrome-extension-builder-build to turn this idea into a reviewable Chrome extension contract and implementation workflow."
-  icon_small: "../chrome-extension-builder/assets/icon.png"
-  icon_large: "../chrome-extension-builder/assets/icon.png"
-  brand_color: "#3559E9"

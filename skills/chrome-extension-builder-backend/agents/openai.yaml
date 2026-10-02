@@ -1,7 +1,0 @@
-interface:
-  display_name: "Chrome Extension Builder: Backend"
-  short_description: "Build APIs, accounts, data, and billing"
-  default_prompt: "Use $chrome-extension-builder-backend to implement the authorized extension backend with safe OAuth, ownership checks, and server-held secrets."
-  icon_small: "../chrome-extension-builder/assets/icon.png"
-  icon_large: "../chrome-extension-builder/assets/icon.png"
-  brand_color: "#3559E9"

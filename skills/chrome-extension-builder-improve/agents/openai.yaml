@@ -1,7 +1,0 @@
-interface:
-  display_name: "Chrome Extension Builder: Improve"
-  short_description: "Select bounded, evidence-based improvements"
-  default_prompt: "Use $chrome-extension-builder-improve to compare safe UX and architecture improvements and deliver the best supported candidate."
-  icon_small: "../chrome-extension-builder/assets/icon.png"
-  icon_large: "../chrome-extension-builder/assets/icon.png"
-  brand_color: "#3559E9"

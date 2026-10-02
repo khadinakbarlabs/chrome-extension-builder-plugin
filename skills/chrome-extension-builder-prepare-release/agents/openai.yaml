@@ -1,7 +1,0 @@
-interface:
-  display_name: "Chrome Extension Builder: Prepare Release"
-  short_description: "Prepare an evidence-backed release"
-  default_prompt: "Use $chrome-extension-builder-prepare-release to prepare this extension's package, listing, privacy assets, and remaining release gates."
-  icon_small: "../chrome-extension-builder/assets/icon.png"
-  icon_large: "../chrome-extension-builder/assets/icon.png"
-  brand_color: "#3559E9"
