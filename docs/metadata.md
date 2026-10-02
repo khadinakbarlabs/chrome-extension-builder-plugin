@@ -1,6 +1,6 @@
 # Chrome Extension Builder metadata
 
-Release 2.2.5, updated 2026-10-02. Plugin identity stays `chrome-extension-builder`; all nineteen skill identifiers now share this native namespace. Earlier generic skill identifiers have been renamed: reload an updated package and use the current names below. Shared policy boundaries and workflow behavior are retained.
+Release 2.2.6, updated 2026-10-02. Plugin identity stays `chrome-extension-builder`; all nineteen skill identifiers now share this native namespace. Earlier generic skill identifiers have been renamed: reload an updated package and use the current names below. Shared policy boundaries and workflow behavior are retained.
 
 ## Skill catalog
 

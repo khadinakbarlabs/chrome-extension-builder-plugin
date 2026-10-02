@@ -8,22 +8,28 @@ import os
 import tempfile
 import zipfile
 from pathlib import Path
-from check_extension import validate_extension, SKIP_PARTS
+from check_extension import validate_extension, SKIP_PARTS, sensitive_file
 from tool_paths import safe_path
 
 
 def regular_files(root: Path) -> list[Path]:
     root = safe_path(root)
+    if sensitive_file(root):
+        raise ValueError('extension root cannot be inside a sensitive or backend directory')
     files = []
     for current, dirnames, filenames in os.walk(root, followlinks=False):
         directory = Path(current)
         for name in list(dirnames):
             if (directory / name).is_symlink(): raise ValueError(f'symlink is not allowed: {name}')
+            if sensitive_file((directory / name).relative_to(root)):
+                raise ValueError(f'sensitive directory cannot ship in extension: {name}')
             if name in SKIP_PARTS: dirnames.remove(name)
         for name in filenames:
             path = directory / name
             if path.is_symlink(): raise ValueError(f'symlink is not allowed: {path}')
             if name in SKIP_PARTS: continue
+            if sensitive_file(path.relative_to(root)):
+                raise ValueError(f'sensitive artifact cannot ship in extension: {path.relative_to(root)}')
             if not path.is_file(): raise ValueError(f'not a regular file: {path}')
             files.append(path)
     return sorted(files, key=lambda p: p.relative_to(root).as_posix())
