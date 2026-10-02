@@ -1,6 +1,6 @@
 # Chrome Extension Builder metadata
 
-Release 2.2.3, updated 2026-10-02. Plugin identity stays `chrome-extension-builder`; all nineteen skill identifiers now share this native namespace. Earlier generic skill identifiers have been renamed: reload an updated package and use the current names below. Shared policy boundaries and workflow behavior are retained.
+Release 2.2.4, updated 2026-10-02. Plugin identity stays `chrome-extension-builder`; all nineteen skill identifiers now share this native namespace. Earlier generic skill identifiers have been renamed: reload an updated package and use the current names below. Shared policy boundaries and workflow behavior are retained.
 
 ## Skill catalog
 
@@ -31,3 +31,7 @@ Release 2.2.3, updated 2026-10-02. Plugin identity stays `chrome-extension-build
 All native editions use the same identity, release, README, policies, skill catalog and specialist role contracts. Their manifests point to the shared repository. The common icon is packaged in each edition; public brand artwork requires the necessary rights.
 
 Claude retains native text agents and commands. Codex/OpenAI uses its native manifest and skill presentation YAML. Cursor uses only its native manifest and discovery guide. Host metadata remains isolated even though the underlying skills and documentation match.
+
+## Public compatibility artwork
+
+The public logo uses the independent browser-and-extension mark with the literal label “for Chrome”. Google Chrome is a trademark of Google LLC; this reference describes browser compatibility and does not imply affiliation or endorsement. The selected Chrome-emblem artwork remains a separate local build and is excluded from default public archives.

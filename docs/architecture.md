@@ -1,6 +1,6 @@
 # Skills-only architecture and execution contract
 
-Target release: 2.2.3. Chrome Extension Builder's core value is a complete interactive extension development workflow delivered by skills. It needs no MCP, credential processing, persistent account settings, automatic services, or arbitrary local filesystem access. In chat alone it produces useful contracts, research briefs, architecture, UX/state specifications, code examples/artifacts, review findings, and acceptance plans in normal Markdown. Supported local execution is an optional capability of the user's chosen host.
+Target release: 2.2.4. Chrome Extension Builder's core value is a complete interactive extension development workflow delivered by skills. It needs no MCP, credential processing, persistent account settings, automatic services, or arbitrary local filesystem access. In chat alone it produces useful contracts, research briefs, architecture, UX/state specifications, code examples/artifacts, review findings, and acceptance plans in normal Markdown. Supported local execution is an optional capability of the user's chosen host.
 
 ## Portable layers
 
