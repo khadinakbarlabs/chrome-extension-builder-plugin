@@ -14,6 +14,10 @@ Read release evidence, architecture, issues, and deployed source. Verify histori
 - Exercise migration from prior releases, account switches, partial writes, offline restart, and API/schema compatibility. Use versioned/reversible migrations and backup/restore evidence.
 - Telemetry needs consent/disclosure appropriate to data policy. Minimize error/version/context, redact URLs/content/tokens, bound retention, and provide disconnect/delete. Never add analytics silently.
 - Maintain troubleshooting, accessible release notes, known issues, ownership/escalation, and recovery. Verify staged output before rollout and exact deployed/store version afterward.
-- Recurring monitoring needs a real supported scheduler and authorized credentials. Preserve notification intent and stay quiet while unchanged unless requested. A local script/draft CI is not activated monitoring.
+- Recurring work needs explicit intent, an actually supported host scheduler, and permitted sanitized project context; credentials remain outside plugin intake. Preserve notification intent and stay quiet while unchanged unless requested. A local script/draft CI is not activated monitoring.
 
 Deliver `docs/maintenance.md` with release matrix, risks, update/migration/support plan, evidence, and next action. Exit when the incident/update is verified and unresolved gates have a concise continuation point. A maintenance plan alone does not prove active monitoring or resolution.
+
+## Context and outcome handoff
+
+Use [feedback](../chrome-extension-builder-feedback/SKILL.md) for sanitized builder-versus-extension triage and evidence-based scoped lessons. Requested future work routes through [follow-up](../chrome-extension-builder-follow-up/SKILL.md): verify actual host capability, activation/readback, and separate first-run proof; no plugin scheduler/service or credential intake. Preserve the canonical report destination assigned by `references/team.json`; any overview is a dated view, not a competing authority.

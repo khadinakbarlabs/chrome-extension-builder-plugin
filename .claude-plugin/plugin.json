@@ -1,8 +1,8 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "chrome-extension-builder",
-  "version": "2.2.6",
-  "description": "Plan, research, design, build, test, and package Chrome Manifest V3 extensions with native specialist skills and an optional local Studio.",
+  "version": "2.3.0",
+  "description": "Plan, build, test, and improve Chrome Manifest V3 extensions with specialist skills, scoped project context, evidence reports, and an optional local Studio.",
   "author": {
     "name": "Khadin Akbar"
   },

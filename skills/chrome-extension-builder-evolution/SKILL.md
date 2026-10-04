@@ -17,3 +17,7 @@ Interpret genetic/evolutionary improvement as transparent generate → evaluate 
 6. Refine winning weaknesses without changing safety boundaries; rerun affected behavior/security/browser checks. Stop on acceptance, measured plateau, budget exhaustion, or a material user decision. Never loop indefinitely.
 
 Deliver `docs/candidates.md`: baseline/candidates/gates/evidence/scores, selected rationale, rejected tradeoffs, rounds, and regression result. Exit with implemented winner or concrete recommendation and decision gate; simulated scores are not production proof.
+
+## Context and outcome handoff
+
+Generate alternatives for this actual project from relevant [recipes/defaults](../chrome-extension-builder/references/task-recipes.md), not generic simulated candidates. Freeze acceptance and rubric before scoring; keep weights unchanged across rounds. Use actual evidence and reviewed feedback; ties retain incumbent, no self-training/global optimality claims. Preserve the canonical report destination assigned by `references/team.json`; any overview is a dated view, not a competing authority.

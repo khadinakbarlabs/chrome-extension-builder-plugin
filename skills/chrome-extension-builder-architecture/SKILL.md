@@ -19,3 +19,7 @@ Write `docs/architecture.md` with context/data-flow diagram, module ownership, m
 - Justify each permission/host. Prefer activeTab/user gestures and optional grants where compatible. Specify denial/revocation, restricted pages, feature detection, and target browsers.
 
 Exit when frontend/backend can implement independently against agreed interfaces, every crossing has an owner, and security examined the design. Export tasks with dependencies/file ownership; preserve user choices.
+
+## Context and outcome handoff
+
+Use compact authorized [project context](../chrome-extension-builder-context/SKILL.md), reconcile confirmed choices before selecting contexts/stack, and explain matching [engineering defaults](../chrome-extension-builder/references/engineering-instincts.md). Record scoped decisions with provenance; invalidate affected evidence when boundaries/interfaces change. Preserve the canonical report destination assigned by `references/team.json`; any overview is a dated view, not a competing authority.

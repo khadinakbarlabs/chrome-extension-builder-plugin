@@ -9,6 +9,10 @@ import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
 from tool_paths import safe_path, relative_file
+from project_lock import project_lock
+from project_guard import project_root, guarded_artifact
+from contextlib import nullcontext
+from bounded_json import load_json, bounded_tree, MAX_STATE_BYTES
 
 STAGES = ('research', 'architecture', 'design', 'build', 'test', 'release')
 
@@ -23,12 +27,19 @@ def state_path(root: Path) -> Path:
 
 
 def write_state(path: Path, state: dict, *, initial=False):
+    bounded_tree(state)
+    serialized = json.dumps(state, indent=2, ensure_ascii=False, allow_nan=False) + '\n'
+    if len(serialized.encode('utf-8')) > MAX_STATE_BYTES:
+        raise ValueError('project record exceeds 4 MiB; export/review records before continuing')
+    history = state.get('history', [])
+    if not isinstance(history, list) or len(history) > 1000:
+        raise ValueError('project history limit reached; export/review before continuing')
     path.parent.mkdir(parents=True, exist_ok=True)
     descriptor, name = tempfile.mkstemp(prefix='.session-', dir=path.parent)
     temp = Path(name)
     try:
         with os.fdopen(descriptor, 'w', encoding='utf-8') as stream:
-            json.dump(state, stream, indent=2); stream.write('\n')
+            stream.write(serialized)
         safe_path(path)
         if initial: os.link(temp, path)
         else: os.replace(temp, path)
@@ -36,10 +47,18 @@ def write_state(path: Path, state: dict, *, initial=False):
         temp.unlink(missing_ok=True)
 
 
-def load_state(root: Path, *, check_integrity=True) -> dict:
-    state = json.loads(state_path(root).read_text(encoding='utf-8'))
-    if not isinstance(state, dict) or state.get('schema_version') != 1 or state.get('mode') not in {'local', 'cloud', 'hybrid'} or not isinstance(state.get('stages'), dict) or set(state['stages']) != set(STAGES):
+def load_state(root: Path, *, check_integrity=True, allow_rebind=False) -> dict:
+    root = project_root(root)
+    state = load_json(state_path(root))
+    if not isinstance(state, dict) or type(state.get('schema_version')) is not int or state['schema_version'] != 1 or not isinstance(state.get('mode'), str) or state['mode'] not in {'local', 'cloud', 'hybrid'} or not isinstance(state.get('stages'), dict) or set(state['stages']) != set(STAGES):
         raise ValueError('invalid project state; restore the last valid state rather than overwriting it')
+    if 'intelligence' in state:
+        # Local import avoids a module cycle while validating both shared writers.
+        from intelligence_records import ensure_intelligence
+        ensure_intelligence(state, root, allow_rebind=allow_rebind)
+    history = state.get('history', [])
+    if not isinstance(history, list) or len(history) > 1000:
+        raise ValueError('project history limit reached; preserve and export/review the existing record')
     pending_seen = False
     for stage in STAGES:
         item = state['stages'][stage]
@@ -49,7 +68,11 @@ def load_state(root: Path, *, check_integrity=True) -> dict:
             if pending_seen: raise ValueError('stages are out of sequence')
             evidence, checksum = item.get('evidence'), item.get('sha256')
             if not isinstance(evidence, str) or not isinstance(checksum, str): raise ValueError(f'invalid evidence: {stage}')
-            if check_integrity and digest(relative_file(root, evidence)) != checksum: raise ValueError(f'evidence changed for {stage}; review and re-record that artifact before continuing')
+            artifact = guarded_artifact(root, evidence, require_file=check_integrity)
+            revision = state.get('intelligence', {}).get('context_revision', 0)
+            if check_integrity and item.get('context_revision', 0) != revision:
+                raise ValueError(f'evidence is stale for {stage} after accepted requirement/architecture changes; explicitly invalidate and re-record it')
+            if check_integrity and digest(artifact) != checksum: raise ValueError(f'evidence changed for {stage}; review and re-record that artifact before continuing')
     return state
 
 
@@ -67,30 +90,35 @@ def main():
     invalidate = commands.add_parser('invalidate'); invalidate.add_argument('path', type=Path); invalidate.add_argument('--stage', required=True, choices=STAGES); invalidate.add_argument('--reason', required=True)
     args = parser.parse_args()
     try:
-        root = safe_path(args.path)
-        if args.command == 'init':
-            if not args.name.strip(): raise ValueError('name cannot be empty')
-            root.mkdir(parents=True, exist_ok=True)
-            state = {'schema_version': 1, 'name': args.name.strip(), 'mode': args.mode, 'created_at': datetime.now(timezone.utc).isoformat(), 'graph': {s: ([STAGES[i-1]] if i else []) for i, s in enumerate(STAGES)}, 'stages': {s: {'status': 'pending'} for s in STAGES}}
-            write_state(state_path(root), state, initial=True)
-        else:
-            state = load_state(root, check_integrity=args.command != 'invalidate')
-            if args.command == 'invalidate':
-                if not args.reason.strip(): raise ValueError('invalidation requires a non-empty reason')
-                index = STAGES.index(args.stage)
-                previous = {s: state['stages'][s] for s in STAGES[index:]}
-                for stage in STAGES[index:]: state['stages'][stage] = {'status': 'pending'}
-                state.setdefault('history', []).append({'action': 'invalidate', 'stage': args.stage, 'reason': args.reason.strip(), 'previous': previous, 'recorded_at': datetime.now(timezone.utc).isoformat()})
-                write_state(state_path(root), state)
-            if args.command == 'advance':
-                index = STAGES.index(args.stage)
-                if any(state['stages'][s]['status'] != 'evidenced' for s in STAGES[:index]): raise ValueError('previous stages require evidence before advancing')
-                artifact = relative_file(root, args.evidence)
-                if artifact == state_path(root): raise ValueError('project state cannot be its own evidence')
-                if state['stages'][args.stage]['status'] != 'pending': raise ValueError('stage already evidenced; preserve its audit trail')
-                state['stages'][args.stage] = {'status': 'evidenced', 'evidence': artifact.relative_to(root).as_posix(), 'sha256': digest(artifact), 'recorded_at': datetime.now(timezone.utc).isoformat()}
-                write_state(state_path(root), state)
-        print(json.dumps(report(state), indent=2))
+        root = project_root(args.path)
+        with (nullcontext() if args.command == 'status' else project_lock(root, create=args.command == 'init')):
+            if args.command == 'init':
+                if not args.name.strip(): raise ValueError('name cannot be empty')
+                root.mkdir(parents=True, exist_ok=True)
+                state = {'schema_version': 1, 'name': args.name.strip(), 'mode': args.mode, 'created_at': datetime.now(timezone.utc).isoformat(), 'graph': {s: ([STAGES[i-1]] if i else []) for i, s in enumerate(STAGES)}, 'stages': {s: {'status': 'pending'} for s in STAGES}}
+                write_state(state_path(root), state, initial=True)
+            else:
+                state = load_state(root, check_integrity=args.command != 'invalidate')
+                if args.command == 'invalidate':
+                    if not args.reason.strip(): raise ValueError('invalidation requires a non-empty reason')
+                    index = STAGES.index(args.stage)
+                    if len(state.get('history', [])) >= 1000:
+                        raise ValueError('project history limit reached; export/review before invalidating another stage')
+                    previous = {s: state['stages'][s] for s in STAGES[index:]}
+                    for stage in STAGES[index:]: state['stages'][stage] = {'status': 'pending'}
+                    state.setdefault('history', []).append({'action': 'invalidate', 'stage': args.stage, 'reason': args.reason.strip(), 'previous': previous, 'recorded_at': datetime.now(timezone.utc).isoformat()})
+                    write_state(state_path(root), state)
+                if args.command == 'advance':
+                    index = STAGES.index(args.stage)
+                    if any(state['stages'][s]['status'] != 'evidenced' for s in STAGES[:index]): raise ValueError('previous stages require evidence before advancing')
+                    artifact = guarded_artifact(root, args.evidence)
+                    if artifact == state_path(root): raise ValueError('project state cannot be its own evidence')
+                    if state['stages'][args.stage]['status'] != 'pending': raise ValueError('stage already evidenced; preserve its audit trail')
+                    state['stages'][args.stage] = {'status': 'evidenced', 'evidence': artifact.relative_to(root).as_posix(), 'sha256': digest(artifact), 'recorded_at': datetime.now(timezone.utc).isoformat()}
+                    if 'intelligence' in state:
+                        state['stages'][args.stage]['context_revision'] = state['intelligence'].get('context_revision', 0)
+                    write_state(state_path(root), state)
+            print(json.dumps(report(state), indent=2))
     except (OSError, ValueError, KeyError, TypeError) as exc: raise SystemExit(str(exc))
 
 

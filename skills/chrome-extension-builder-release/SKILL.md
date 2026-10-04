@@ -19,3 +19,7 @@ Any reviewer test account is for the separately generated Chrome product and is 
 6. Document rollout channel, backend migrations, recovery/rollback, support, and consent-aligned telemetry. Store rollback may require a reviewed update; never promise instant reversal.
 
 Deliver ZIP/source, checklist/digest, listing/privacy/reviewer assets, CI/run commands, and actual external status in `docs/release.md`. Exit criteria follow the target: package ready, browser verified, backend deployed, submitted, or accepted. Acceptance requires observed store evidence.
+
+## Context and outcome handoff
+
+Read compact project state and stale/unrun gates before release preparation. A dated report aggregates canonical specialist evidence; it cannot convert a prepared ZIP, listing, job specification, or source review into published, activated, or browser-verified work. Preserve the canonical report destination assigned by `references/team.json`; any overview is a dated view, not a competing authority.
