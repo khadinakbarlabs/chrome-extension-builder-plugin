@@ -16,3 +16,7 @@ Baseline the built extension on representative pages. Read [platform architectur
 - Deduplicate cloud requests; bound retries with backoff/jitter, timeout/cancel, quotas, permitted caching. Show partial/errors. Caches must not cross accounts or leak sensitive data.
 
 Deliver `docs/performance.md` with baseline/budgets/profiler evidence, changes, repeated before/after results, and tradeoffs. Rerun affected behavior/security tests. Exit when budgets pass without regression; unavailable hardware/browser measurements remain explicitly unverified.
+
+## Context and outcome handoff
+
+Compare exact comparable artifacts/fixtures and dated measurements; unknown baselines stay unknown. Human, scheduled, and retry outcomes are separate; counts/cost/duration charts require real sample sizes and sources. No 10x benefit claim from agent scores. Preserve the canonical report destination assigned by `references/team.json`; any overview is a dated view, not a competing authority.

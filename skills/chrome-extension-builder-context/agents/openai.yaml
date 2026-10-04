@@ -1,0 +1,7 @@
+interface:
+  display_name: "Chrome Extension Builder: Context"
+  short_description: "Resume scoped decisions, evidence, and next steps"
+  default_prompt: "Use $chrome-extension-builder-context to resume my supplied extension context and recommend the next action."
+  icon_small: "../chrome-extension-builder/assets/icon.png"
+  icon_large: "../chrome-extension-builder/assets/icon.png"
+  brand_color: "#3559E9"

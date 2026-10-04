@@ -1,0 +1,7 @@
+interface:
+  display_name: "Chrome Extension Builder: Report"
+  short_description: "Produce evidence-linked project and session reports"
+  default_prompt: "Use $chrome-extension-builder-report to summarize progress, evidence, blockers and next action."
+  icon_small: "../chrome-extension-builder/assets/icon.png"
+  icon_large: "../chrome-extension-builder/assets/icon.png"
+  brand_color: "#3559E9"

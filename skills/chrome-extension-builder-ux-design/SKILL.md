@@ -19,3 +19,7 @@ Create `docs/ux-spec.md` with journey/state maps, surface dimensions, typography
 6. Compare at most three meaningful alternatives if direction is uncertain. Judge completion, hierarchy, trust, accessibility, and implementation cost; select one and retain rationale.
 
 Exit when the core journey is interactive and critical states have defined behavior. Handoff tokens, components, screenshot targets, and QA scenarios. Use [browser QA](../chrome-extension-builder/references/browser-qa.md) and [WCAG](https://www.w3.org/TR/WCAG22/).
+
+## Context and outcome handoff
+
+Retain accepted visual direction from authorized project context. Deliver representative empty/loading/error/offline/permission/account states. Label concept, prototype, and actual capture using [visual evidence](../chrome-extension-builder/references/reporting-and-visual-evidence.md); screenshots alone do not prove accessibility or extension runtime. Preserve the canonical report destination assigned by `references/team.json`; any overview is a dated view, not a competing authority.

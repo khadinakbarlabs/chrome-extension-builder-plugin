@@ -2,7 +2,7 @@
 
 <img src="assets/chrome-extension-builder-icon.png" width="128" height="128" alt="Chrome Extension Builder browser and extension logo">
 
-One extension-building toolkit for Claude, Codex/OpenAI, and Cursor. All editions share 19 skills, 12 specialist role contracts, the optional local Studio, and the same scaffold/check/package helpers. Native downloads contain only the metadata their host uses. Skills-only: no MCP, hooks, accounts, credential intake, or automatic startup.
+One extension-building toolkit for Claude, Codex/OpenAI, and Cursor. All editions share 23 skills, 12 specialist role contracts, the optional local Studio, and the same scaffold/check/package helpers. Native downloads contain only the metadata their host uses. Skills-only: no MCP, hooks, accounts, credential intake, or automatic startup.
 
 ## Native editions
 
@@ -48,9 +48,20 @@ The scaffold saves local notes; name/purpose flags change metadata, not arbitrar
 
 Load the actual generated directory as unpacked in chrome://extensions and test its real behavior when browser tools exist. Static checks are heuristics, not full manifest, security, policy, or runtime certification. If local access is absent, deliver the contract/code/test/load plan in chat and mark execution unrun.
 
+
+## Project intelligence and useful follow-ups
+
+Start from your idea, continue a supplied project, fix a bug, review quality, or prepare a release. The workflow selects the relevant skills and asks only questions that change the next decision. Existing projects keep confirmed choices, provisional assumptions, evidence and the next action separate. Scoped continuity never harvests host history or memory.
+
+The 23 skills cover the extension lifecycle plus Context, Feedback, Report and Follow-up. Twelve specialist roles share explicit artifacts and review gates. Optional local project intelligence records decisions, sanitized feedback, session outcomes and evidence-linked JSON/Markdown reports. Builder feedback and generated-extension feedback stay separate. Recorded human sessions, scheduled runs and retries have distinct counts; no cross-user telemetry is collected.
+
+Studio provides Overview, Experience, Architecture, Quality, Feedback, Activity and Release views. Imported evidence is labelled by source, artifact, environment and date; changes make affected evidence stale. Candidate changes are reviewed before application. Concepts, declarations and observed browser results retain distinct labels. See the Context, Report and Follow-up skills for chat-only alternatives.
+
+Follow-up job definitions include scope, timezone, cadence, budget, checkpoint, notifications and stop controls. They do not activate a background service. When a user requests a concrete schedule, use and verify the available host scheduler. A job record or exported prompt alone is not an active or successful scheduled run.
+
 ## Optional Studio
 
-Studio is a local read-only planner, manually started only when requested and supported:
+Studio is a local project review workspace served read-only, manually started only when requested and supported:
 
 ```sh
 node skills/chrome-extension-builder/scripts/extension_builder.mjs studio
@@ -65,10 +76,12 @@ Plans stay in browser memory by default. Remembering is optional; disabling it o
 ```sh
 node skills/chrome-extension-builder/scripts/extension_builder.mjs session init ./my-project --name "My Extension" --mode hybrid
 node skills/chrome-extension-builder/scripts/extension_builder.mjs session status ./my-project
+node skills/chrome-extension-builder/scripts/extension_builder.mjs intelligence init ./my-project
+node skills/chrome-extension-builder/scripts/extension_builder.mjs intelligence show ./my-project
 node skills/chrome-extension-builder/scripts/extension_builder.mjs session advance ./my-project --stage research --evidence research.md
 ```
 
-The tracker records evidence files/hashes, stage timestamps, and invalidation history in the selected local project. Artifact integrity is not semantic proof. It has no transcript collector. Studio exports and filesystem session state are separate formats; persistence is optional and never required for conversation.
+The tracker records evidence files/hashes, stage timestamps, and invalidation history in the selected local project. Artifact integrity is not semantic proof. It has no transcript collector. The lifecycle tracker remains compatible with existing project state. Structured project reports provide a validated interchange with Studio; persistence is optional and never required for conversation. Initialize project intelligence explicitly before recording context or exporting reports; inspect live helper help for the contained JSON input fields. `intelligence examples --kind context` prints an editable synthetic input shape. Use intelligence report to generate a local JSON/Markdown view and review it before sharing.
 
 ## Package and review
 
