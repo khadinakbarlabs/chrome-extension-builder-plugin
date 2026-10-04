@@ -9,7 +9,15 @@
       "session state",
       "shared contract assignments",
       "user dialogue",
-      "final evidence aggregation"
+      "final evidence aggregation",
+      "compact project intelligence and conflict resolution",
+      "dated outcome/report synthesis",
+      "user intent and host follow-up scope"
+    ],
+    "skills": [
+      "chrome-extension-builder",
+      "chrome-extension-builder-context",
+      "chrome-extension-builder-report"
     ]
   },
   "roles": [
@@ -91,7 +99,12 @@
         "chrome-extension-builder-testing"
       ],
       "report": "quality/test-report.md",
-      "mode": "specialist"
+      "mode": "specialist",
+      "owns": [
+        "exact-artifact acceptance observations",
+        "visual capture provenance",
+        "fresh/stale/unrun evidence pointers for orchestration synthesis"
+      ]
     },
     {
       "id": "performance-engineer",
@@ -119,10 +132,17 @@
       "skill": "chrome-extension-builder-maintenance",
       "skills": [
         "chrome-extension-builder-maintenance",
-        "chrome-extension-builder-debugging"
+        "chrome-extension-builder-debugging",
+        "chrome-extension-builder-feedback",
+        "chrome-extension-builder-follow-up"
       ],
       "report": "maintenance/handoff.md",
-      "mode": "specialist"
+      "mode": "specialist",
+      "owns": [
+        "builder-versus-extension feedback triage",
+        "scoped reviewed lessons",
+        "requested host-backed follow-up specification and observed controls"
+      ]
     },
     {
       "id": "independent-evaluator",
@@ -241,7 +261,9 @@
     "parallelism": "Only after contracts are frozen and file ownership is disjoint. Backend/integrations/frontend may run concurrently; security/performance may review independently after integration evidence.",
     "shared_files": "One owner at a time. Orchestrator owns session state; architecture owns shared interface definitions until explicitly handed off.",
     "tool_fallback": "The coordinator loads the mapped lifecycle skill and role prompt relative to this registry. Claude may invoke plugin-scoped native agents when available. Other hosts use available permitted delegation, or execute roles serially without claiming independent reviewers ran.",
-    "authorization": "Use the user's existing scope and provider permissions. Prepare concrete artifacts before asking about consequential missing authorization. No blanket extra approval gate."
+    "authorization": "Use the user's existing scope and provider permissions. Prepare concrete artifacts before asking about consequential missing authorization. No blanket extra approval gate.",
+    "adaptive_routes": "Select only needed nodes for build/improve/fix/audit/prepare-release/continue using adaptive-routing.md; omitted nodes are not-applicable with reasons, not successful runs.",
+    "job_activation": "Scheduling here describes workflow dependencies, not a runtime scheduler. Host-backed jobs require explicit intent, actual supported host capability, activation/readback evidence, and distinct first-run results."
   },
   "evolution": {
     "max_candidates_per_round": 3,

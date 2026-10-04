@@ -17,3 +17,7 @@ Read architecture, UX, and message/API contracts. Preserve the chosen vanilla/WX
 - Companion sites can share tokens and public types, never privileged adapters or server env values. Inspect generated client artifacts for secrets/remote executable dependencies.
 
 Deliver source, generated extension directory, run/load commands, screenshots, and behavior evidence. Test meaningful state logic and the actual extension in Chromium; webpage demos are insufficient. Exit when core interaction survives reopening/navigation and critical errors recover. Use [platform reference](../chrome-extension-builder/references/platform-architecture.md) and [browser QA](../chrome-extension-builder/references/browser-qa.md).
+
+## Context and outcome handoff
+
+Consume confirmed context/interfaces and implement the smallest useful journey. Record changed surfaces/permissions/messages and affected stale evidence; use [practical recipes](../chrome-extension-builder/references/task-recipes.md) only when appropriate, not as claims about the scaffold. Preserve the canonical report destination assigned by `references/team.json`; any overview is a dated view, not a competing authority.

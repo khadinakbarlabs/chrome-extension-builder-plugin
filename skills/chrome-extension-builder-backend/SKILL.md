@@ -20,3 +20,7 @@ Define `docs/backend-contract.md`: endpoints, schemas, authentication, per-objec
 5. Add redacted metrics and actionable errors. Budget provider calls, rate-limit per account, support cancellation, and show accurate cloud status.
 
 Deliver API/source, fixtures, negative contract tests, migration/run instructions, env placeholders, and authorized deployment evidence. Exit when an extension-to-backend canary proves flow/data boundaries. Missing provider credentials leave a clearly named live gate while local behavior is completed.
+
+## Context and outcome handoff
+
+Check that backend/accounts are justified by confirmed project need; do not infer them from an old provisional assumption. Preserve provider/account/data/cost boundaries; record interface changes and affected stale acceptance evidence in the canonical project state. Preserve the canonical report destination assigned by `references/team.json`; any overview is a dated view, not a competing authority.

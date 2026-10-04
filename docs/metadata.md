@@ -1,6 +1,6 @@
 # Chrome Extension Builder metadata
 
-Release 2.2.6, updated 2026-10-02. Plugin identity stays `chrome-extension-builder`; all nineteen skill identifiers now share this native namespace. Earlier generic skill identifiers have been renamed: reload an updated package and use the current names below. Shared policy boundaries and workflow behavior are retained.
+Release 2.3.0, updated 2026-10-05. Plugin identity stays `chrome-extension-builder`; all twenty-three skill identifiers now share this native namespace. Earlier generic skill identifiers have been renamed: reload an updated package and use the current names below. Shared policy boundaries and workflow behavior are retained.
 
 ## Skill catalog
 
@@ -25,6 +25,11 @@ Release 2.2.6, updated 2026-10-02. Plugin identity stays `chrome-extension-build
 | Chrome Extension Builder: Studio | [chrome-extension-builder-studio](../skills/chrome-extension-builder-studio/SKILL.md) |
 | Chrome Extension Builder: Testing | [chrome-extension-builder-testing](../skills/chrome-extension-builder-testing/SKILL.md) |
 | Chrome Extension Builder: UX Design | [chrome-extension-builder-ux-design](../skills/chrome-extension-builder-ux-design/SKILL.md) |
+
+| Chrome Extension Builder: Context | [chrome-extension-builder-context](../skills/chrome-extension-builder-context/SKILL.md) |
+| Chrome Extension Builder: Feedback | [chrome-extension-builder-feedback](../skills/chrome-extension-builder-feedback/SKILL.md) |
+| Chrome Extension Builder: Report | [chrome-extension-builder-report](../skills/chrome-extension-builder-report/SKILL.md) |
+| Chrome Extension Builder: Follow-up | [chrome-extension-builder-follow-up](../skills/chrome-extension-builder-follow-up/SKILL.md) |
 
 ## Shared presentation and native routing
 

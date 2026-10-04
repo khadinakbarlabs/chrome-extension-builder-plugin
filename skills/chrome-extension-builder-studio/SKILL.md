@@ -12,3 +12,7 @@ In chat, guide purpose → audience → local/cloud/hybrid → surfaces → site
 If the user specifically requests local Studio, first verify shell/Node/Python and bundled assets are available in their explicit environment. Resolve `../chrome-extension-builder/scripts/extension_builder.mjs` from this skill directory, read its help, and manually run its studio command only in that authorized environment. No automatic service startup, external exposure, MCP UI, or cloud connection. If unsupported, continue the chat planning flow and name the limitation.
 
 Explain optional browser-memory/export controls before entering a plan. Studio checkboxes/scores are declarations, not executed tests or independent agents. Exit with a usable brief, chosen tradeoffs, next workflow, and actual startup status when attempted.
+
+## Context and outcome handoff
+
+Planning outputs are provisional declarations until supported by actual artifact evidence. Use [project context](../chrome-extension-builder-context/SKILL.md) to retain confirmed choices and [report](../chrome-extension-builder-report/SKILL.md) to label prototypes versus real captures. Candidate weights stay frozen across rounds; exported plans do not execute agents or activate jobs. Preserve the canonical report destination assigned by `references/team.json`; any overview is a dated view, not a competing authority.

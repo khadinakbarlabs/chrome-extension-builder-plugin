@@ -18,3 +18,7 @@ Cover applicable cases: install/first use, popup reopen, panel/tab state, worker
 Test keyboard/focus/labels, contrast, zoom, themes, screen-reader critical journeys, and injected style collisions. API errors must show recovery. Close worker inspection during idle tests because DevTools can alter lifetime. Redact secrets/personal data in console/network evidence.
 
 Deliver `docs/qa-report.md`: source/artifact digest, build command, browser/version/channel, timestamp, pass/fail/not-run cases, screenshots/redacted traces, defects, and reruns. Missing browser access means named unverified cases, never invented passes. Exit when the actual extension core journey and material negative paths pass. Manual branded-Chrome verification and store acceptance remain separate gates.
+
+## Context and outcome handoff
+
+Own observed acceptance evidence and visual capture identity, not global success assertions. Reconcile exact artifact against canonical context; changed permissions/interfaces/contexts invalidate affected checks. Label actual captures with build/browser/date/fixture, mark unavailable host/browser tests unrun, and hand evidence pointers to [report synthesis](../chrome-extension-builder-report/SKILL.md). Preserve the canonical report destination assigned by `references/team.json`; any overview is a dated view, not a competing authority.

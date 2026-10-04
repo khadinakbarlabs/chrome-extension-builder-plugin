@@ -17,3 +17,7 @@ Reproduce the reported interaction on the current built extension. Capture sourc
 6. Write a failing test or repeatable browser reproduction. Make the smallest coherent root-cause fix; avoid success fallbacks and blanket permission widening. Rerun original and affected negative paths.
 
 Deliver evidence, patch, regression test/reproduction, root cause, and current-artifact outcome in the issue record or `docs/qa-report.md`. Exit after the original interaction passes or name the exact external gate. Use [browser QA](../chrome-extension-builder/references/browser-qa.md).
+
+## Context and outcome handoff
+
+Start from [compact context](../chrome-extension-builder-context/SKILL.md), current artifact, and failing reproduction; use the fix route without restarting full research. Retain accepted choices; mark impacted checks stale, verify the smallest meaningful regression, and record next actionable outcome. Preserve the canonical report destination assigned by `references/team.json`; any overview is a dated view, not a competing authority.

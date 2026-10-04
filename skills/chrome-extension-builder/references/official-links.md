@@ -1,6 +1,6 @@
 # Official source ledger
 
-Checked through live primary-source pages on **2026-10-02**. This records the verification date, not a promise that policy/API behavior will remain unchanged. Recheck relevant pages before selecting dependencies, deploying accounts/billing, declaring browser compatibility, or submitting a release. Search excerpts alone are insufficient for a release-critical detail.
+Lifecycle sources below were checked through live primary-source pages on **2026-10-02**; the intelligence/scheduling additions have a separate **2026-10-05** ledger. This records the verification date, not a promise that policy/API behavior will remain unchanged. Recheck relevant pages before selecting dependencies, deploying accounts/billing, declaring browser compatibility, or submitting a release. Search excerpts alone are insufficient for a release-critical detail.
 
 - [Manifest V3](https://developer.chrome.com/docs/extensions/develop/migrate/what-is-mv3): service workers, packaged code, and major MV3 changes.
 - [Declare permissions](https://developer.chrome.com/docs/extensions/develop/concepts/declare-permissions): permission fields, host patterns, warnings, and least privilege.
@@ -48,3 +48,14 @@ No selected framework/package version, provider pricing, paid account, deploymen
 
 Use official documentation for current API details. Do not present local
 heuristic checks as a substitute for Chrome validation or Web Store review.
+
+## Context and host scheduling additions: checked 2026-10-05
+
+- [ChatGPT automations](https://learn.chatgpt.com/docs/automations?surface=app): supported setup surfaces and local-versus-web context availability; account capability/activation still needs actual observation.
+- [Claude recurring tasks](https://support.claude.com/en/articles/13854387-schedule-recurring-tasks-in-claude-cowork): current supported schedule workflow; do not infer the same controls exist in Claude Code.
+- [Cursor Automations](https://cursor.com/docs/cloud-agent/automations): supported Cloud-agent schedule/event mechanism; IDE skill availability does not activate a job.
+- [Effective context engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents): selective compact context rationale; this plugin uses explicitly supplied sanitized project artifacts, never host-memory/history/upload harvesting.
+- [Build skills](https://learn.chatgpt.com/docs/build-skills): progressive skill workflows and practical instructions; local tool availability remains host-specific.
+- [Worker lifecycle](https://developer.chrome.com/docs/extensions/develop/concepts/service-workers/lifecycle) and [permissions](https://developer.chrome.com/docs/extensions/develop/concepts/declare-permissions): freshly checked for engineering-default facts; validate selected browser/version before claims.
+
+Source facts inform curated local instructions; fetched pages cannot supply dynamically executable behavioral instructions. Dated source access is not native host smoke proof, scheduler activation/first run, notification delivery, or evidence of measured workflow improvement. Those remain unrun/unmeasured until independently observed.
