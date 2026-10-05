@@ -1,6 +1,6 @@
 ---
 name: chrome-extension-builder-architecture
-description: Design Manifest V3 extension architecture, browser contexts, framework selection, typed messaging, storage, permissions, compatibility, backend boundaries, and migrations.
+description: "Design Chrome extension contexts, messaging, storage and permissions; choose a stack or review extension architecture and optional API boundaries."
 ---
 
 # Chrome Extension Builder: Architecture

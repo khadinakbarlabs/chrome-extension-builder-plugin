@@ -1,6 +1,6 @@
 ---
 name: chrome-extension-builder-report
-description: Synthesize concise Chrome extension session outcomes, project readiness, quality, feedback, scheduled digests, and labelled visual evidence from the canonical project record and specialist reports. Use for status, recap, handoff, before/after comparison, or readiness reporting.
+description: "Report Chrome extension progress or produce an evidence-linked project handoff. Show useful outcomes, stale checks, blockers and one executable next task without claiming unrun browser results."
 ---
 
 # Chrome Extension Builder: Outcome Reports

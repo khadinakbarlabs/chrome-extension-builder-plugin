@@ -1,11 +1,17 @@
 ---
 name: chrome-extension-builder
-description: Lead an interactive Manifest V3 Chrome extension workflow from research and architecture through UX, frontend, optional cloud design, security, testing, release preparation, and maintenance. Use for new browser tools, SaaS companions, reviews, upgrades, and repairs; optional local execution depends on the host.
+description: "Build, fix, audit or resume Chrome Manifest V3 extensions. Use for browser tools, popup or side-panel features, worker bugs, permission reviews and release preparation; start with the smallest useful result."
 ---
 
 # Chrome Extension Builder
 
 Before any workflow, read the native [host guide](references/host-guide.md) and [policy boundaries](references/policy-boundaries.md). Host instructions and safeguards take priority. Use only task-scoped, sanitized inputs and synthetic fixtures. This is a skills-only plugin with no MCP, account service, credential intake, or automatic background services.
+
+## Route before expanding the workflow
+
+Inspect authorized existing source and supplied project context before asking questions. A focused repair loads debugging and the affected topic; a build implements one useful interaction; an audit reports findings; an import or resume reconciles identity and continues the actual blocker. Release preparation checks the built output. Ordinary mobile, Shopify or prose editing work without a Chrome extension context belongs to another workflow.
+
+For a new feature, define one first milestone and acceptance journey, then implement it under existing authority. For example, a selected-text side panel must save and restore the selected excerpt, validate messages, handle denied access and verify worker restart; a renamed notes scaffold does not satisfy that request. Candidate rounds and broad research are optional when they materially inform a choice. Read [execution and recovery](references/agent-execution.md) beside the relevant operation.
 
 ## Start interactively
 
@@ -21,7 +27,7 @@ Select build/improve/fix/audit/prepare-release/continue with [adaptive routing](
 
 ## Select the team
 
-Read [team.json](references/team.json) and the selected `references/role-<id>.md` prompt. Its report paths, workflow ownership, and fixed rubric govern assignments. Load only the relevant skills below. In a capable authorized host, delegate disjoint file ownership and explicit inputs/outputs; otherwise execute distinct sequential passes and disclose their independence limit. Use the native specialist agents when available; otherwise run the role contracts sequentially. Never invent agent runs.
+For work requiring specialist ownership, read [team.json](references/team.json) and the selected `references/role-<id>.md` prompt. Its report paths, workflow ownership, and fixed rubric govern assignments. Load only the relevant skills below. In a capable authorized host, delegate disjoint file ownership and explicit inputs/outputs; otherwise execute distinct sequential passes and disclose their independence limit. Use the native specialist agents when available; otherwise run the role contracts sequentially. Never invent agent runs.
 
 | Work | Skill | Role |
 | --- | --- | --- |

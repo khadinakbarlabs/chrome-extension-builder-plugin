@@ -92,3 +92,14 @@ This independent plugin is by Khadin Akbar, intended for adult developers. Googl
 Optional local project files/storage retain only user-supplied information. Requested research can send scoped queries through the user's enabled host tools; their own retention and policies apply. No plugin-hosted service retains data. See [Privacy](PRIVACY.md), [Terms](TERMS.md), [Security](SECURITY.md), and [Support](SUPPORT.md).
 
 Source/ZIP validation does not prove semantic model behavior, every host surface, backend deployment, Chrome Web Store acceptance, or directory approval. See [validation](docs/validation.md) and [policy evaluation cases](docs/policy-evaluations.md).
+
+
+## Task execution and recovery (2.3.1)
+
+Start with the task: build one useful interaction, repair the affected context, audit findings, improve an existing journey, import/reconcile a handoff, prepare an actual build for release, or resume the real blocker. Public skill IDs remain unchanged. Focused repairs do not require broad research or candidate rounds.
+
+The contained main-skill launcher now supports `--json doctor` for runtime and packaged-capability preflight, and a leading `--json` for bounded scaffold/check/package/session/intelligence receipts. Receipts identify the version, invocation, actual outputs, verification level and recoverable error. Timeouts require state/output reconciliation before another write; no automatic retries or global tool installation occur. See [execution and recovery](skills/chrome-extension-builder/references/agent-execution.md).
+
+Studio Continue follows the supplied task and blockers instead of always opening Architecture. Export next task creates a compact handoff for an agent to review against current files. It is a planning recommendation, not execution or Chrome API proof.
+
+Local installation and reload steps are in [host installation](docs/host-installation.md). New local installation does not replace an existing directory review or publish an update.

@@ -1,6 +1,6 @@
 ---
 name: chrome-extension-builder-build
-description: Start a guided Chrome extension build from an idea or existing sanitized project, selecting research, architecture, design, implementation, and verification workflows. Use for chrome-extension-builder-build command requests or a new extension project.
+description: "Build a Chrome extension or implement its next feature. Inspect existing files first; deliver one working user interaction with relevant checks instead of only renaming a starter."
 ---
 
 # Chrome Extension Builder: Build

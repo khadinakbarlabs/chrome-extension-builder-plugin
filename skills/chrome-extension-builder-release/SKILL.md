@@ -1,6 +1,6 @@
 ---
 name: chrome-extension-builder-release
-description: Prepare and verify Chrome extension release artifacts, CI, versioning, store listing/screenshots, permissions/privacy disclosures, authorized submission, backend compatibility, and rollout evidence.
+description: "Validate and package a Chrome extension build; prepare store assets, disclosures and rollout evidence. Keep local packaging, authorized submission and live store publication separate."
 ---
 
 # Chrome Extension Builder: Release

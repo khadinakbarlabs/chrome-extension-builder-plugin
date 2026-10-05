@@ -1,6 +1,6 @@
 ---
 name: chrome-extension-builder-feedback
-description: Capture optional sanitized feedback and turn demonstrated builder or generated-extension problems into scoped reproductions, priorities, and regression candidates. Use for feedback, confusing workflows, repeated context failures, or end-user extension issues without mixing product identities.
+description: "Triage feedback about this Chrome extension builder or a generated extension. Separate reported problems from reproduced defects and turn feedback into a reviewable fix."
 ---
 
 # Chrome Extension Builder: Feedback

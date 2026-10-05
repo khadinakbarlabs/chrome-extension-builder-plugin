@@ -1,6 +1,6 @@
 ---
 name: chrome-extension-builder-performance
-description: Measure and improve Chrome extension responsiveness, bundle size, injected-page impact, worker/network activity, storage usage, resource consumption, and cloud cost without security or UX regressions.
+description: "Measure and improve Chrome extension responsiveness, resource usage, page impact or API cost. Compare the same artifact and scenario before and after changes."
 ---
 
 # Chrome Extension Builder: Performance

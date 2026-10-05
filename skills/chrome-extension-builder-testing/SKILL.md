@@ -1,6 +1,6 @@
 ---
 name: chrome-extension-builder-testing
-description: Verify Chrome extensions using meaningful unit and API tests, persistent-context Chromium runs, manual Chrome journeys, lifecycle, permission/account failures, accessibility, and exact-artifact evidence.
+description: "Verify Chrome extension behavior in the actual build: popup/panel interaction, content-script boundaries, worker restart, messaging and permission denial. Separate static and browser evidence."
 ---
 
 # Chrome Extension Builder: Testing

@@ -3,9 +3,11 @@ import { spawn } from 'node:child_process';
 import { existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { resolve, dirname } from 'node:path';
+import { doctor, execute } from './agent_contract.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
-const [command, ...args] = process.argv.slice(2);
+const structured = process.argv[2] === '--json';
+const [command, ...args] = process.argv.slice(structured ? 3 : 2);
 const tools = {
   scaffold: ['skills/chrome-extension-builder/scripts/scaffold_extension.py'],
   check: ['skills/chrome-extension-builder/scripts/check_extension.py'],
@@ -20,8 +22,12 @@ if (sourceCheckout) {
   tools.bundle = ['scripts/release_plugin.py', 'bundle'];
 }
 const maintenanceHelp = sourceCheckout ? '\n  validate-plugin  Validate this plugin source checkout\n  bundle           Build isolated archives from the source checkout' : '';
-if (!command || ['help', '--help', '-h'].includes(command)) {
-  console.log(`Chrome Extension Builder\n\nUsage: chrome-extension-builder <command> [options]\n\n  studio           Open a local interactive planning workspace\n  scaffold         Generate a working Manifest V3 starter\n  check            Inspect an extension build directory\n  package          Validate and ZIP an extension build directory\n  session          Initialize, inspect, or advance an evidence-backed project\n  intelligence     Record scoped context, feedback, outcomes, reports and job plans${maintenanceHelp}\n\nRun any command with --help for options. Requires Node.js and Python 3.10+.\nStudio prints a loopback URL; open it in a browser. No account or cloud service is needed.`);
+if (structured || command === 'doctor') {
+  const result = command === 'doctor' ? doctor(root) : execute(root, command, args);
+  console.log(JSON.stringify(result, null, 2));
+  process.exitCode = result.error ? 1 : 0;
+} else if (!command || ['help', '--help', '-h'].includes(command)) {
+  console.log(`Chrome Extension Builder\n\nUsage: chrome-extension-builder <command> [options]\nAgent mode: chrome-extension-builder --json <command> [options]\n\n  doctor           Check runtime and packaged capabilities without a project\n\n  studio           Open a local interactive planning workspace\n  scaffold         Generate a working Manifest V3 starter\n  check            Inspect an extension build directory\n  package          Validate and ZIP an extension build directory\n  session          Initialize, inspect, or advance an evidence-backed project\n  intelligence     Record scoped context, feedback, outcomes, reports and job plans${maintenanceHelp}\n\nRun any command with --help for options. Requires Node.js and Python 3.10+.\nStudio prints a loopback URL; open it in a browser. No account or cloud service is needed.`);
 } else if (command === '--version') {
   const { readFile } = await import('node:fs/promises');
   let version;

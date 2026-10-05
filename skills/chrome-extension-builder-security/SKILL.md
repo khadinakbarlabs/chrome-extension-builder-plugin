@@ -1,6 +1,6 @@
 ---
 name: chrome-extension-builder-security
-description: Review and harden Chrome extension permissions, messaging, CSP, page trust boundaries, cloud authentication, privacy, dependencies, and Chrome Web Store compliance before release.
+description: "Review Chrome extension permissions, messages, CSP, page trust boundaries and API authorization. Use for permission or privacy concerns and final extension security checks."
 ---
 
 # Chrome Extension Builder: Security

@@ -1,6 +1,6 @@
 ---
 name: chrome-extension-builder-frontend
-description: Implement Chrome extension popup, side panel, options, extension tabs, content-script UI, and companion frontend with packaged assets, accessible state handling, and MV3-safe output.
+description: "Implement Chrome extension popup, side panel, options or content-script UI with packaged assets, loading/error states, keyboard access and validated messages."
 ---
 
 # Chrome Extension Builder: Frontend

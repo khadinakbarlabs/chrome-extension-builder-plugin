@@ -1,6 +1,6 @@
 ---
 name: chrome-extension-builder-ux-design
-description: Design polished Chrome extension journeys, popup and side-panel layouts, onboarding, permission and account states, accessible interaction, design tokens, and companion-app UX.
+description: "Design or polish a Chrome extension popup, side panel, onboarding or options journey. Create clear loading/empty/error states and accessible visual interactions."
 ---
 
 # Chrome Extension Builder: UX Design

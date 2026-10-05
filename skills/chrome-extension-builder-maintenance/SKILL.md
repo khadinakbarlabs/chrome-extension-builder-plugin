@@ -1,6 +1,6 @@
 ---
 name: chrome-extension-builder-maintenance
-description: Maintain released Chrome extensions through scoped incident triage, browser/dependency updates, migrations, privacy-respecting telemetry, support, compatibility, and safe rollout or rollback.
+description: "Maintain released Chrome extensions: reproduce incidents, adapt to browser changes, migrate local data and verify compatibility with a safe rollout or rollback."
 ---
 
 # Chrome Extension Builder: Maintenance

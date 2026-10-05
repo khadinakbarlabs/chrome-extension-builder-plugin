@@ -1,6 +1,6 @@
 ---
 name: chrome-extension-builder-improve
-description: Start bounded evidence-based Chrome extension improvement across UX, architecture, performance, and maintainability using candidate comparison and safety gates. Use for chrome-extension-builder-improve, polish, or evolutionary design requests.
+description: "Improve an existing Chrome extension journey, interface or reliability. Preserve accepted direction, make a focused change and verify its effect; candidate rounds are optional."
 ---
 
 # Chrome Extension Builder: Improve

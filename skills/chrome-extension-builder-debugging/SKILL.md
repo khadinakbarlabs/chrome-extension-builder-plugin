@@ -1,6 +1,6 @@
 ---
 name: chrome-extension-builder-debugging
-description: Reproduce and fix Chrome extension runtime defects in popup, side panel, content scripts, MV3 workers, permissions, messaging, storage, build output, auth, and cloud integrations.
+description: "Fix Chrome extension bugs: a popup that will not save, disappearing worker messages, broken side panels, content scripts or denied permissions. Reproduce, repair and verify the affected behavior."
 ---
 
 # Chrome Extension Builder: Debugging

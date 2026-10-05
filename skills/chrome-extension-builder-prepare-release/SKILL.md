@@ -1,6 +1,6 @@
 ---
 name: chrome-extension-builder-prepare-release
-description: Start Chrome extension release preparation, package verification, listing/privacy assets, and evidence review, with publication only when actual user intent and host permissions allow it. Use for chrome-extension-builder-prepare-release or store-readiness requests.
+description: "Prepare an existing Chrome extension for release: inspect the actual build, resolve checks, package the reviewed output and align listing/privacy disclosures. Publishing requires current authority."
 ---
 
 # Chrome Extension Builder: Prepare Release

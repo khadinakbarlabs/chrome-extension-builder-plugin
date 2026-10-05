@@ -1,6 +1,6 @@
 ---
 name: chrome-extension-builder-research
-description: Research Chrome extension user needs, competitors, APIs, permission feasibility, cloud integrations, store policy, costs, and framework tradeoffs before selecting a product direction.
+description: "Research a new Chrome extension idea, user need, competing tool or API feasibility with current sources. Skip market research when the user already chose a focused feature or repair."
 ---
 
 # Chrome Extension Builder: Research

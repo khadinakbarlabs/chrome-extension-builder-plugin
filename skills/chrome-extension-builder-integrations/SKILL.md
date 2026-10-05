@@ -1,6 +1,6 @@
 ---
 name: chrome-extension-builder-integrations
-description: Implement legitimate site, SaaS, AI, companion-web-app, webhook, and native Chrome extension integrations with scoped permissions, data consent, resilient contracts, and provider validation.
+description: "Connect a Chrome extension to an authorized site or SaaS API with scoped access, validated messages, consent and recoverable offline/account states."
 ---
 
 # Chrome Extension Builder: Integrations

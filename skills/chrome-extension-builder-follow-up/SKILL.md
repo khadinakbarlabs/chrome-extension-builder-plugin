@@ -1,6 +1,6 @@
 ---
 name: chrome-extension-builder-follow-up
-description: Prepare and, when explicitly requested and supported, configure scoped host-scheduled Chrome extension continuation, compatibility, feedback, or release-readiness follow-ups. Use for reminders, recurring reviews, monitoring, or later checks; a local job record is not an active schedule.
+description: "Plan a user-requested recurring Chrome extension check or future continuation. Verify host scheduling and activation separately; local job records never start a schedule."
 ---
 
 # Chrome Extension Builder: Host Follow-Up

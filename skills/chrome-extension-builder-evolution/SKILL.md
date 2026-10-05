@@ -1,6 +1,6 @@
 ---
 name: chrome-extension-builder-evolution
-description: Improve Chrome extension UI and architecture with bounded candidate generation, independent evaluation, hard safety gates, weighted tradeoffs, selection, and regression checks.
+description: "Compare substantive Chrome extension UX or architecture alternatives with bounded candidate rounds, safety gates and sourced measurements; use only when comparison helps the requested change."
 ---
 
 # Chrome Extension Builder: Evolution

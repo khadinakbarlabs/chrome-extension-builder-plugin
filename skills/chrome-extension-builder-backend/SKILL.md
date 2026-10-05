@@ -1,6 +1,6 @@
 ---
 name: chrome-extension-builder-backend
-description: Build optional secure Chrome extension cloud backends with APIs, SaaS accounts, OAuth, databases, AI proxies, server jobs, billing entitlements, deployment, and observability.
+description: "Implement or review an optional API backend for a Chrome extension: authentication, authorization, data storage, account isolation and resilient cloud operations."
 ---
 
 # Chrome Extension Builder: Backend

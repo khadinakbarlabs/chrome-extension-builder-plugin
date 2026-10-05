@@ -1,6 +1,6 @@
 ---
 name: chrome-extension-builder-context
-description: Load and maintain concise Chrome extension project context, decision provenance, acceptance journeys, scoped memory, conflict handling, and adaptive next-step routing. Use when starting consequential work, resuming a project, changing a requirement, or preserving a useful handoff.
+description: "Resume a Chrome extension project, import a sanitized project handoff or reconcile saved decisions with current files. Find the actual unfinished task without restarting completed work."
 ---
 
 # Chrome Extension Builder: Project Context

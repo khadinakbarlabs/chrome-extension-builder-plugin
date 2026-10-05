@@ -1,4 +1,4 @@
-import { STEPS, VIEWS, PERMISSIONS, TEAM, RUBRIC, CONTEXT_FIELDS, contextPatch, MAX_SESSION_BYTES, defaultSession, parseSession, parseReport, issues, progress, rankCandidates, applyCandidate, candidateDiff, evolve, briefMarkdown, scaffoldCommand, changeProject, changeContext, declareCheck, importReport, evidenceRows, recordRating, recordOutcome, outcomeCounts, recordFeedback, feedbackExport, validateFeedback } from './model.mjs';
+import { nextWork, taskHandoff, STEPS, VIEWS, PERMISSIONS, TEAM, RUBRIC, CONTEXT_FIELDS, contextPatch, MAX_SESSION_BYTES, defaultSession, parseSession, parseReport, issues, progress, rankCandidates, applyCandidate, candidateDiff, evolve, briefMarkdown, scaffoldCommand, changeProject, changeContext, declareCheck, importReport, evidenceRows, recordRating, recordOutcome, outcomeCounts, recordFeedback, feedbackExport, validateFeedback } from './model.mjs';
 const $ = id => document.getElementById(id);
 const key = 'extension-builder-studio-v2';
 const legacyKey = 'extension-builder-studio-v1';
@@ -84,8 +84,9 @@ function renderSummary() {
   $('validation').replaceChildren(...issues(session).map(message => el('p', '', message))); $('command-text').textContent = scaffoldCommand(session);
 }
 function renderOverview() {
+  const next = nextWork(session); $('continue-plan').textContent = `${next.title} →`;
   $('overview-goal').textContent = session.context.goal || session.project.purpose || 'Describe the useful outcome and acceptance journey. A small, clear first slice gives the team something concrete to verify.';
-  $('overview-next').textContent = session.context.next_action || session.context.current_task || (progress(session).stale ? 'Review the changed requirements and recheck stale acceptance evidence.' : 'Define the first useful journey, then choose its surface and boundaries.');
+  $('overview-next').textContent = next.action;
   const evidence = evidenceRows(session); const blockers = evidence.filter(e => ['failed', 'stale'].includes(e.effective_status));
   $('overview-status').replaceChildren(statusCard('Current milestone', session.context.current_task || 'Planning', 'Project-scoped context'), statusCard('Latest useful artifact', evidence.at(-1)?.artifact || 'Not recorded', evidence.at(-1) ? date(evidence.at(-1).recorded_at) : 'Import a sourced project report'), statusCard('Evidence needing attention', String(blockers.length), 'Failed or stale records in this workspace only'), statusCard('Runtime / distribution', 'Not established here', 'Imported records are not live browser or store verification'));
   const decisions = session.report?.decisions || [];
@@ -158,7 +159,8 @@ for (const permission of PERMISSIONS) { const row = el('label', 'permission-pill
 $('team').replaceChildren(...TEAM.map(([name, responsibility], i) => { const role = el('div', 'team-role'); const content = el('div'); content.append(el('h3', '', name), el('p', '', responsibility)); role.append(el('span', 'team-icon', String(i + 1).padStart(2, '0')), content); return role; }));
 $('experience-preview-slot').append(document.querySelector('.preview-column > .preview'));
 $('rating-dimension').replaceChildren(...Object.keys(RUBRIC).map(key => { const option = el('option', '', label(key)); option.value = key; return option; }));
-$('continue-plan').addEventListener('click', () => changeView('architecture'));
+$('continue-plan').addEventListener('click', () => changeView(nextWork(session).view));
+$('export-task').addEventListener('click', () => { download(JSON.stringify(taskHandoff(session), null, 2), 'json', 'application/json', 'next-task'); announce('Next-task handoff exported. Review the selected route and reconcile current files before acting.'); });
 $('project-form').addEventListener('submit', event => event.preventDefault());
 $('project-form').addEventListener('input', event => { const field = event.target.id; let patch = null; if (['name', 'purpose', 'type', 'surface', 'backend', 'domains'].includes(field)) patch = { [field]: event.target.value }; else if (field.startsWith('perm-')) patch = { permissions: PERMISSIONS.filter(p => $(`perm-${p}`).checked) }; if (!patch) return; try { session = changeProject(session, patch); persist(); renderSummary(); renderChecklist(); renderOverview(); renderQuality(); renderRelease(); renderCandidates(); } catch (error) { announce(error.message, true); } });
 $('project-form').addEventListener('change', event => { session = { ...session, activity: [...session.activity, { id: uid(), type: 'project-change', summary: `Reviewed local change: ${label(event.target.id)}. Affected checks require review.`, recorded_at: now() }].slice(-100) }; persist(); renderActivity(); });

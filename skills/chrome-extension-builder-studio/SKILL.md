@@ -1,6 +1,6 @@
 ---
 name: chrome-extension-builder-studio
-description: Guide interactive Chrome extension planning in conversation or manually start the optional local Extension Studio when the user requests it and the host supports local execution. Use for studio or visual planning requests.
+description: "Review a Chrome extension plan visually or export its next-task handoff. Start the optional local planning Studio only when requested; it does not build extensions or execute agents."
 ---
 
 # Chrome Extension Builder: Studio

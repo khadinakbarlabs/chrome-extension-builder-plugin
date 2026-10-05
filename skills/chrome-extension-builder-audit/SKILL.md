@@ -1,6 +1,6 @@
 ---
 name: chrome-extension-builder-audit
-description: Route a Chrome extension audit to architecture, security, testing, and performance reviews using scoped sanitized source or an explicitly available local build. Use for chrome-extension-builder-audit, review, readiness, or permission-risk requests.
+description: "Audit an existing Chrome extension for concrete defects, permission risks and missing verification. Use for extension reviews and readiness checks; report findings before proposing repairs."
 ---
 
 # Chrome Extension Builder: Audit
