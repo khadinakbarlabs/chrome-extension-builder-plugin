@@ -3,7 +3,7 @@ import { spawn } from 'node:child_process';
 import { existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { resolve, dirname } from 'node:path';
-import { doctor, execute } from './agent_contract.mjs';
+import { doctor, execute, childEnvironment, PYTHON_FLAGS } from './agent_contract.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
 const structured = process.argv[2] === '--json';
@@ -47,7 +47,7 @@ if (structured || command === 'doctor') {
   process.exitCode = 2;
 } else {
   const [script, ...prefix] = tools[command];
-  const child = spawn('python3', [resolve(root, script), ...prefix, ...args], { stdio: 'inherit' });
+  const child = spawn('python3', [...PYTHON_FLAGS, resolve(root, script), ...prefix, ...args], { stdio: 'inherit', env: childEnvironment() });
   child.on('error', error => { console.error(`Could not start Python 3: ${error.message}`); process.exitCode = 1; });
   child.on('exit', (code, signal) => { process.exitCode = code ?? (signal === 'SIGINT' ? 130 : 1); });
   const forward = () => child.kill('SIGINT');

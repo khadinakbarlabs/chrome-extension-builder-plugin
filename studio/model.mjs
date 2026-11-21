@@ -1,6 +1,6 @@
 /** Pure local planning transforms: no filesystem, environment or network access.
  * Inputs are explicitly supplied plans. Security examples below describe rejected
- * designs, not executable credential handling. Completion is never release proof.
+ * designs only. Completion is never release proof.
  */
 export const VERSION = 2;
 export const MAX_SESSION_BYTES = 1048576;
@@ -45,7 +45,7 @@ export const CANDIDATES = [
   { id: 'focused', name: 'Focused local utility', type: 'local', surface: 'popup', backend: 'none', permissions: ['storage'], scores: { safety: 5, simplicity: 5, usability: 4, resilience: 5 }, detail: 'A compact popup with durable local state. Smallest operational footprint.' },
   { id: 'companion', name: 'Connected side panel', type: 'cloud', surface: 'sidepanel', backend: 'existing', permissions: ['storage', 'activeTab'], scores: { safety: 4, simplicity: 3, usability: 5, resilience: 4 }, detail: 'A persistent task surface connected to an authenticated API. Add explicit offline and sign-in states.' },
   { id: 'hybrid', name: 'Offline-first workspace', type: 'hybrid', surface: 'sidepanel', backend: 'new', permissions: ['storage'], scores: { safety: 4, simplicity: 2, usability: 5, resilience: 5 }, detail: 'Local-first drafts with optional cloud sync. Requires conflict handling, deletion, and account boundaries.' },
-  { id: 'unsafe', name: 'Broad access + client secret', type: 'cloud', surface: 'popup', backend: 'new', permissions: ['tabs'], scores: { safety: 1, simplicity: 3, usability: 3, resilience: 2 }, rejected: true, detail: 'Rejected: unnecessary broad page access and a privileged secret in distributable client code.' }
+  { id: 'unsafe', name: 'Broad access + remote code', type: 'cloud', surface: 'popup', backend: 'new', permissions: ['tabs'], scores: { safety: 1, simplicity: 3, usability: 3, resilience: 2 }, rejected: true, detail: 'Rejected: unnecessary broad page access and remotely hosted executable code, which Manifest V3 does not allow.' }
 ];
 export function defaultSession(workspaceId = 'local-plan') {
   return { version: VERSION, workspace_id: workspaceId, project: { name: 'My useful extension', purpose: '', type: 'local', surface: 'popup', permissions: ['storage'], domains: '', backend: 'none' }, view: 'overview', step: 'research', checks: Object.fromEntries(STEPS.map(s => [s.id, s.checks.map(() => false)])), staleChecks: Object.fromEntries(STEPS.map(s => [s.id, s.checks.map(() => false)])), staleStages: [], staleEvidence: [], candidate: 'focused', generation: 0, context: Object.fromEntries(CONTEXT_FIELDS.map(k => [k, ['acceptance_journey', 'constraints'].includes(k) ? [] : ''])), report: null, ratings: [], outcomes: [], feedback: [], activity: [] };

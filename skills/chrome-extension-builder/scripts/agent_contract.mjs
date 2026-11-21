@@ -11,6 +11,19 @@ export const OPERATIONS = {
   session: 'skills/chrome-extension-builder/scripts/session.py',
   intelligence: 'skills/chrome-extension-builder/scripts/intelligence.py',
 };
+/**
+ * Child helpers get a minimal fixed environment: only executable lookup, home,
+ * temporary-directory and locale variables. Nothing else from the parent
+ * process (including any tokens or keys a shell may hold) is passed on.
+ * Python runs with -E -s -B so PYTHON* variables and user site packages are ignored.
+ */
+export const CHILD_ENV_NAMES = ['PATH', 'HOME', 'USERPROFILE', 'TMPDIR', 'TEMP', 'TMP', 'LANG', 'LC_ALL', 'LC_CTYPE', 'SystemRoot', 'PATHEXT'];
+export const PYTHON_FLAGS = ['-E', '-s', '-B'];
+export function childEnvironment(source = process.env) {
+  const env = {};
+  for (const name of CHILD_ENV_NAMES) if (typeof source[name] === 'string') env[name] = source[name];
+  return env;
+}
 export function version(root) {
   for (const name of ['plugin.json', '.codex-plugin/plugin.json', '.claude-plugin/plugin.json', '.cursor-plugin/plugin.json', 'gemini-extension.json', 'package.json']) {
     const path = resolve(root, name);
@@ -69,7 +82,7 @@ function receipt(root, operation, outputs = null, code = null, unknown = false) 
     browser_verified: false, store_published: false, scheduler_activated: false };
 }
 export function doctor(root) {
-  const probe = spawnSync('python3', ['--version'], { encoding: 'utf8', timeout: 3000, maxBuffer: 4096 });
+  const probe = spawnSync('python3', [...PYTHON_FLAGS, '--version'], { encoding: 'utf8', timeout: 3000, maxBuffer: 4096, env: childEnvironment() });
   const match = /^Python (\d+)\.(\d+)\.(\d+)/.exec(probe.stdout || probe.stderr || '');
   const pythonOk = probe.status === 0 && match && Number(match[1]) === 3 && Number(match[2]) >= 10;
   const nodeOk = Number(process.versions.node.split('.')[0]) >= 18;
@@ -83,7 +96,7 @@ export function execute(root, command, args, { timeoutMs = 30000 } = {}) {
   const preflight = doctor(root); if (preflight.error) return receipt(root, command, null, preflight.error.code);
   if (['session', 'intelligence'].includes(command) && args[1] && args[0] !== 'init' && args[0] !== 'examples' && !args[1].startsWith('--') && !existsSync(args[1])) return receipt(root, command, null, 'PROJECT_NOT_FOUND');
   const checkArgs = command === 'check' && !args.includes('--json') ? [...args, '--json'] : args;
-  const child = spawnSync('python3', [resolve(root, OPERATIONS[command]), ...checkArgs], { encoding: 'utf8', timeout: Math.min(30000, Math.max(50, timeoutMs)), killSignal: 'SIGKILL', maxBuffer: 8388608 });
+  const child = spawnSync('python3', [...PYTHON_FLAGS, resolve(root, OPERATIONS[command]), ...checkArgs], { encoding: 'utf8', timeout: Math.min(30000, Math.max(50, timeoutMs)), killSignal: 'SIGKILL', maxBuffer: 8388608, env: childEnvironment() });
   if (child.error?.code === 'ENOENT') return receipt(root, command, null, 'RUNTIME_NOT_FOUND');
   if (['ETIMEDOUT', 'ENOBUFS'].includes(child.error?.code) || child.signal) return receipt(root, command, null, 'OUTCOME_UNKNOWN', true);
   if (child.error) return receipt(root, command, null, child.error.code === 'EACCES' ? 'ACCESS_DENIED' : 'LOCAL_IO_FAILED');

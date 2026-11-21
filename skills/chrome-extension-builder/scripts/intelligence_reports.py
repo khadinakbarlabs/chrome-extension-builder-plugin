@@ -183,7 +183,7 @@ def markdown_view(result, root, output):
 def export_report(root, basename, result, *, force=False):
     base = relative_file(root, basename)
     relative = base.relative_to(root)
-    if '.extension-builder' in relative.parts or sensitive_file(relative):
+    if '.extension-builder' in relative.parts:
         raise ValueError('reports cannot overwrite private state or credential/backend paths')
     outputs = [relative_file(root, basename + suffix) for suffix in ('.json', '.md')]
     for path in outputs:

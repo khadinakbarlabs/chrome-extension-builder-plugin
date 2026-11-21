@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 """Inspect only a selected MV3 build locally; never send its contents anywhere.
 
-Sensitive paths are rejected before reading. Credential-related names below are
-deny rules, not credential inputs. Heuristics do not certify Store compliance.
+Private paths are rejected by name pattern before any read: hidden entries,
+suffix-less files, key/database file types, backend source and secret-named
+files. File contents are never used to decide. Heuristics do not certify Store
+compliance.
 """
 from __future__ import annotations
 import argparse
@@ -17,10 +19,13 @@ from tool_paths import safe_path, relative_file
 
 BROAD = {'<all_urls>', '*://*/*', 'http://*/*', 'https://*/*', 'file:///*'}
 SKIP_PARTS = {'.git', 'node_modules', '__pycache__', '.DS_Store', '.extension-builder'}
-SENSITIVE_SUFFIXES = {'.pem', '.key', '.p12', '.pfx', '.crt', '.cer', '.sqlite', '.db'}
-SENSITIVE_NAMES = {'.npmrc', '.netrc', '.git-credentials', '.pypirc', 'id_rsa', 'id_ed25519', 'id_ecdsa', 'id_dsa', 'credentials.json', 'service-account.json', 'application_default_credentials.json', 'client_secret.json', 'client-secrets.json', 'oauth_tokens.json', 'secrets.json', 'server.py', 'server.js', 'server.ts', 'backend.py', 'backend.js', 'backend.ts'}
-CREDENTIAL_PARTS = {'.ssh', '.aws', '.azure', '.docker', '.kube', '.gnupg', 'gcloud'}
-SENSITIVE_PARTS = {'server', 'backend', 'secrets'} | CREDENTIAL_PARTS
+# Structural deny rules. They match path shapes only and never open a file.
+KEY_OR_DATABASE_SUFFIXES = {'.pem', '.key', '.p12', '.pfx', '.crt', '.cer', '.sqlite', '.db'}
+BACKEND_PARTS = {'server', 'backend', 'secrets'}
+PRIVATE_WORDS = {'secret', 'secrets', 'credential', 'credentials', 'token', 'tokens'}
+DISPLAY_SUFFIXES = {'.css', '.png', '.jpg', '.jpeg', '.gif', '.webp', '.svg', '.ico', '.avif', '.woff', '.woff2', '.ttf', '.otf'}
+SUFFIXLESS_DOCS = {'license', 'licence', 'notice', 'readme', 'copying', 'authors', 'changelog'}
+STATE_DIR = '.extension-builder'
 REMOTE_PATTERNS = [
     re.compile(r'\b(?:import|importScripts)\s*\(\s*[\"\x27`](?:https?:)?//', re.I),
     re.compile(r'\b(?:import|export)\s+(?:[^;]*?\bfrom\s*)?[\"\x27](?:https?:)?//', re.I),
@@ -41,10 +46,44 @@ def valid_match(value: str) -> bool:
     return bool(re.fullmatch(r'(?:\*|(?:\*\.)?(?:[a-zA-Z0-9-]+\.)*[a-zA-Z0-9-]+)(?::(?:\*|[0-9]{1,5}))?', host))
 
 
+def hidden(part: str) -> bool:
+    return part.startswith('.') and part not in {'.', '..', STATE_DIR}
+
+
+def sensitive_directory(path: Path) -> bool:
+    return any(hidden(part) or part in BACKEND_PARTS for part in (p.lower() for p in path.parts))
+
+
 def sensitive_file(path: Path) -> bool:
-    name = path.name.lower()
-    protected_part = any(part.lower() in SENSITIVE_PARTS or part.lower() in {'.env', '.dev.vars'} or part.lower().startswith(('.env.', '.dev.vars.')) for part in path.parts)
-    return protected_part or name in SENSITIVE_NAMES or path.suffix.lower() in SENSITIVE_SUFFIXES
+    """True for private path shapes; decided from the name alone, never contents."""
+    if sensitive_directory(path):
+        return True
+    name, suffix = path.name.lower(), path.suffix.lower()
+    stem = name[:-len(suffix)] if suffix else name
+    if suffix in KEY_OR_DATABASE_SUFFIXES or (not suffix and stem not in SUFFIXLESS_DOCS):
+        return True
+    if stem in {'server', 'backend'} or stem.endswith(('-server', '_server')):
+        return True
+    words = set(re.split(r'[-_.\s]+', stem))
+    return suffix not in DISPLAY_SUFFIXES and (bool(words & PRIVATE_WORDS) or 'service-account' in stem or 'service_account' in stem)
+
+
+def refused_root(root: Path) -> bool:
+    """Refuse private selected roots before reading anything inside them.
+
+    A root inside a hidden directory is accepted only when a source checkout
+    marker sits between that directory and the root (for example a worktree).
+    """
+    root = Path(root)
+    parts = [part.lower() for part in root.parts]
+    if hidden(root.name) or any(part in BACKEND_PARTS for part in parts):
+        return True
+    for index, part in enumerate(root.parts):
+        if hidden(part):
+            inner = [Path(*root.parts[:depth]) for depth in range(index + 2, len(root.parts) + 1)]
+            if not any((directory / '.git').exists() for directory in inner):
+                return True
+    return False
 
 
 def referenced_files(manifest: dict[str, Any]) -> list[str]:
@@ -105,8 +144,8 @@ def validate_extension(root: Path) -> dict[str, Any]:
         error(str(exc)); return result
     if not root.is_dir():
         error(f'extension directory does not exist: {root}'); return result
-    if sensitive_file(root):
-        error('extension root cannot be inside a sensitive or backend directory'); return result
+    if refused_root(root):
+        error('extension root cannot be inside a sensitive, hidden or backend directory'); return result
     try:
         manifest_path = relative_file(root, 'manifest.json')
         if not manifest_path.is_file(): raise ValueError('manifest.json must be a regular file')
@@ -201,12 +240,13 @@ def validate_extension(root: Path) -> dict[str, Any]:
         for name in list(dirnames):
             if (directory / name).is_symlink():
                 error(f'symlink is not allowed: {(directory / name).relative_to(root)}'); dirnames.remove(name)
-            elif sensitive_file((directory / name).relative_to(root)):
-                error(f'sensitive or backend directory cannot ship in extension: {(directory / name).relative_to(root)}'); dirnames.remove(name)
             elif name in SKIP_PARTS: dirnames.remove(name)
+            elif sensitive_directory((directory / name).relative_to(root)):
+                error(f'sensitive or backend directory cannot ship in extension: {(directory / name).relative_to(root)}'); dirnames.remove(name)
         for name in filenames:
             path = directory / name
             relative = path.relative_to(root)
+            if name in SKIP_PARTS: continue
             if path.is_symlink(): error(f'symlink is not allowed: {relative}'); continue
             if not path.is_file(): error(f'not a regular file: {relative}'); continue
             if sensitive_file(relative): error(f'sensitive or backend artifact cannot ship in extension: {relative}'); continue
