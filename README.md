@@ -1,7 +1,5 @@
 # Chrome Extension Builder
 
-<img src="assets/chrome-extension-builder-icon.png" width="128" height="128" alt="Chrome Extension Builder browser and extension logo">
-
 One extension-building toolkit for Claude, Codex/OpenAI, and Cursor. All editions share 23 skills, 12 specialist role contracts, the optional local Studio, and the same scaffold/check/package helpers. Native downloads contain only the metadata their host uses. Skills-only: no MCP, hooks, accounts, credential intake, or automatic startup.
 
 ## Native editions
