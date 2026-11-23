@@ -101,3 +101,7 @@ The contained main-skill launcher now supports `--json doctor` for runtime and p
 Studio Continue follows the supplied task and blockers instead of always opening Architecture. Export next task creates a compact handoff for an agent to review against current files. It is a planning recommendation, not execution or Chrome API proof.
 
 Local installation and reload steps are in [host installation](docs/host-installation.md). New local installation does not replace an existing directory review or publish an update.
+
+## Two editions in this repository
+
+The repository root is the **full edition**, including the optional local launcher, checker, packager, scaffold generator, project-record helpers and Studio. The [`directory-edition/`](directory-edition/) folder is a **text-only build for the Claude plugin directory**: the same skills, agents and commands with the same names, but with the helpers replaced by written procedures that Claude follows with its ordinary tools. Its README lists exactly what is less exact there.

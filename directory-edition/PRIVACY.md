@@ -1,0 +1,27 @@
+# Privacy
+
+Last updated: 2026-11-23. This describes the text-only directory edition of Chrome Extension Builder (skills, agents, commands and written procedures; no executable helpers). Public native editions publish this policy in its source repository; public accessibility is verified separately before submission.
+
+The plugin has no hosted account service, MCP server, credential intake, checkout, telemetry client, or transcript collector. It runs as instructions in the host chosen by the user. A host may process conversation and enabled-tool data under its own settings and policies; this document does not promise control over that independent retention.
+
+## Data, purpose, recipients, retention, controls
+
+| Category | Why it is used | Recipients/location | Retention and user control |
+| --- | --- | --- | --- |
+| Task brief, chosen sites/surfaces/permissions, architecture preferences, supplied sanitized snippets | Produce relevant design, code, review, and acceptance artifacts | User-selected host/model; enabled research tools only when used for the task | Host retention/settings apply; provide minimal inputs and use host deletion controls |
+| Chat Studio project brief, audience, chosen contexts/permissions, next action, decision provenance, evidence declarations, candidate comparisons | Interactive planning in chat | User-selected host/model only; this edition has no browser Studio, local server or browser storage | Host retention/settings apply; the brief persists only if the user saves it or authorizes the local project record |
+| Explicitly exported/imported JSON project report/session or Markdown report/brief | User-controlled handoff and recovery | User's chosen local download/file and any recipient the user shares it with | Remains until user deletes files/copies/backups; deleting a chat does not remove saved files |
+| Explicit local project files, generated source, selected evidence/report paths and hashes, stage timestamps/history, project-scoped decisions, sanitized feedback, outcome records, follow-up job specifications and scheduler references, package entries | Optional starter files, checking, packaging, or resumable local record written by the host agent following the plugin's written procedures | User-authorized local filesystem; no plugin upload endpoint | Persists until the user deletes the project/artifact or `.extension-builder` session state; backups/sharing remain the user's responsibility |
+| Sanitized issue reproduction and versions the user chooses to share | Troubleshooting | The support channel the user selects; the public native editions offer a GitHub issue tracker for sanitized reports | Recipient's published retention applies; do not send private logs or records |
+
+Optional feedback is scoped to the selected project and explicitly distinguishes feedback about this builder from feedback about the generated extension. It is kept locally, shown for review, and exported only through a user action. The plugin does not upload feedback, aggregate cross-user statistics, or infer usage from conversations. Counts describe explicitly recorded local human sessions, scheduled runs, and retries separately; they are not global plugin usage.
+
+Project continuity uses deliberately supplied sanitized project artifacts, never ambient host memory, chat history, conversation summaries, or transcript extraction. Users control the project fields and files supplied for the task. Follow-up job definitions are local plans, not active schedules. A supported host scheduler is used only for a concrete user-requested job; its scope, source access, notifications and independent retention must be disclosed and verified. Pausing a local job record does not pause a host schedule: use the host scheduler controls as well.
+
+This directory edition ships no executable helpers, local server or Studio assets; it makes no telemetry or cloud calls of its own. Local project files are written only by the host agent with the user's permission, and the project record is kept private (folder mode 700, file mode 600). Normal browser/OS local networking and host tools have their own handling. Research may access official public websites through the user's enabled host; disclose task-relevant data transfer rather than assuming the plugin controls those services.
+
+Do not enter or supply real credentials, access tokens, cookies, private keys, OTP/MFA codes, payment-card data, PHI, government IDs, customer datasets, private browser profiles, or transcripts. Use placeholders and synthetic fixtures. This is an input boundary, not a claim that free-text fields can automatically detect every sensitive value. Sanitize before submitting/importing/exporting.
+
+Generated Chrome extensions and optional cloud backends are separate products. For example, the notes starter stores user-entered notes in its own browser storage. That generated behavior is not plugin storage. Each product needs its own exact collection, recipient, retention, consent, export/delete, authentication, and privacy disclosures. Legitimate login/secret provisioning occurs in the product/provider's protected channels outside plugin intake.
+
+No data is sold by the plugin or used for plugin advertising. Its local files do not establish public contact details or external legal acceptance. Verify published policy/support/terms/homepage URLs and the actual host/provider terms before directory release.

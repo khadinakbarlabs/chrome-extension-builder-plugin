@@ -1,0 +1,20 @@
+{
+  "name": "chrome-extension-builder",
+  "version": "2.3.3",
+  "description": "Plan, build, test, and improve Chrome Manifest V3 extensions with specialist skills, scoped project context, evidence reports, and written check and packaging procedures. Text-only directory edition.",
+  "author": {
+    "name": "Khadin Akbar"
+  },
+  "homepage": "https://github.com/khadinakbarlabs/chrome-extension-builder-plugin",
+  "repository": "https://github.com/khadinakbarlabs/chrome-extension-builder-plugin",
+  "license": "MIT",
+  "keywords": [
+    "chrome-extension-builder",
+    "chrome",
+    "browser-extension",
+    "manifest-v3",
+    "agent-skills",
+    "chrome-web-store",
+    "skills-only"
+  ]
+}
